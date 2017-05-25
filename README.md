@@ -1,2 +1,2 @@
 # currency_exchange_simulator
-Writen in C++ and PHP
+Written in C++ and PHP
