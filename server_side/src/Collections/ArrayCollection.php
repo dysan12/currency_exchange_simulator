@@ -9,12 +9,12 @@ class ArrayCollection implements ICollection
 {
     protected $collection = [];
 
-    public function setCollection($collection)
+    public function setCollection($collection): void
     {
         $this->collection = $collection;
     }
 
-    public function addItem($value, $index)
+    public function addItem($value, $index): void
     {
         $this->collection[$index] = $value;
     }

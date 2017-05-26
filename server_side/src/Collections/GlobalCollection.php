@@ -6,29 +6,24 @@ use Currency\Exceptions\ItemCollectionException;
 
 class GlobalCollection implements ICollection
 {
-    protected $collection;
+    protected $collection = [];
 
-    public function setCollection($collection)
+    public function setCollection($collection): void
     {
         $this->collection = $collection;
     }
 
-    public function addItem($value, $name)
+    public function addItem($value, $name): void
     {
         $this->collection[$name] = $value;
     }
 
-    /**
-     * @param $name
-     * @return mixed
-     * @throws ItemCollectionException
-     */
     public function getItem($name)
     {
         if (isset($this->collection[$name]))
             return $this->collection[$name];
 
-        throw new ItemCollectionException('requested item:"' . $name . '" was not set');;
+        throw new ItemCollectionException('requested item:"' . $name . '" was not set');
     }
 
     public function getCollection(): array
