@@ -4,7 +4,7 @@ namespace Currency\Routing;
 
 /**
  * Class Route responsible for defying route instances.
- * @package Webqms\Routing
+ * @package Currency\Routing
  */
 class Route implements IRoute
 {

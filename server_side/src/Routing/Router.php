@@ -5,11 +5,12 @@ namespace Currency\Routing;
 use Currency\Collections\ICollection;
 use Currency\CustomInterfaces\ICreator;
 use Currency\Exceptions\CollectionException;
+use Currency\Exceptions\InvalidPropertyException;
 use Currency\Exceptions\NotFoundException;
 
 /**
  * Class Router controller. Initialize matching routes and extracting data from request.
- * @package Webqms\Routing
+ * @package Currency\Routing
  */
 class Router
 {
@@ -41,9 +42,16 @@ class Router
         $this->extractRequestData();
     }
 
+    /**
+     * @return IRoute - route instance
+     * @throws InvalidPropertyException - throws if matchedRoute was not properly set/wasn't set
+     */
     public function getMatchedRoute(): IRoute
     {
-        return $this->matchedRoute;
+        if ($this->matchedRoute instanceof IRoute)
+            return $this->matchedRoute;
+
+        throw new InvalidPropertyException('there is not matched route');
     }
 
     /**
@@ -55,7 +63,7 @@ class Router
         $methodRequest = $this->methodRequest;
 
         try {
-            $routeMatcher = new RouteMatching($this->routesCollection->getCollection());
+            $routeMatcher = new RouteMatching($this->routesCollection);
             $this->matchedRoute = $routeMatcher->matchRouteByUrl($urlRequest, $methodRequest);
 
         } catch (CollectionException $exception) {
@@ -76,9 +84,9 @@ class Router
     }
 
     /**
-     * Extract data from URL(filter and route-regex) and from input stream(like in PUT/DELETE/POST request)
+     * Extract data from URL(filter and route-regex) and from input stream(like while PUT/DELETE/POST request)
      */
-    private function extractRequestData()
+    private function extractRequestData(): void
     {
         $dataRender = new DataRendering();
 

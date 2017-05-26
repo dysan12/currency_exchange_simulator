@@ -2,25 +2,28 @@
 
 namespace Currency\Routing;
 
+use Currency\Collections\ICollection;
 use Currency\Exceptions\CollectionException;
 use Currency\Exceptions\NotFoundException;
 
 /**
  * Class RouteMatching responsible for matching route from collection.
- * @package Webqms\Routing
+ * @package Currency\Routing
  */
 class RouteMatching implements IRouteMatching
 {
     private $collection = [];
 
-    public function __construct(array $collection)
+    /**
+     * RouteMatching constructor.
+     * @param ICollection $collection - collection with IRoute instances
+     * @throws CollectionException - if any element of collection is non-IRoute
+     */
+    public function __construct(ICollection $collection)
     {
-        if (count($collection))
-            $this->collection = $collection;
-        else
-            throw new CollectionException('Conveyed collection cannot by empty.');
+        $this->collection = $collection->getCollection();
 
-        foreach ($collection as $route) {
+        foreach ($this->collection as $route) {
             if (!($route instanceof IRoute))
                 throw new CollectionException('Conveyed collection includes non-IRoute instance/s.');
         }
@@ -30,6 +33,7 @@ class RouteMatching implements IRouteMatching
      * Find route according to handed URL and method.
      * @param string $url - url to match up.
      * @param string $requestMethod - method of looked for route.
+     * @throws NotFoundException - if couldn't find any matching route in collection
      * @return IRoute - route from collection
      */
     public function matchRouteByUrl(string $url, string $requestMethod = 'GET'): IRoute
@@ -38,6 +42,7 @@ class RouteMatching implements IRouteMatching
             $routeUrl = addcslashes($route->getUrl(), '/');
             if ($route->isFilterEnabled())
                 $routeUrl .= '(?:\/|\?(?:\w{1,30}=\w{1,30})(?:&\w{1,30}=\w{1,30}){0,30})?';
+
             if (preg_match('/^' . $routeUrl . '$/', $url) && $route->getRequestMethod() === $requestMethod) {
                 return $route;
             }
@@ -48,8 +53,6 @@ class RouteMatching implements IRouteMatching
     /**
      * Compare every chunk of URL with routes URLs. Compute for every route Levenshtein distance. Return route with the
      * least distance.
-     * @param string $url
-     * @return IRoute
      */
     public function getMostSimilarRoute(string $url): IRoute
     {
@@ -71,11 +74,11 @@ class RouteMatching implements IRouteMatching
     }
 
     /**
-     * Take two arrays of strings and compute its levenshtein distance. Every element of first array is compare to
-     * element with the same index of second array.
+     * Take two arrays of strings and compute its levenshtein distance. Every element of the first array is compare to
+     * element with the same index in second array.
      * @param array $arrayOne
      * @param array $arrayTwo
-     * @return int
+     * @return int - levenshtein distance
      */
     private function computeArraysLevenshtein(array $arrayOne, array $arrayTwo): int
     {
@@ -93,7 +96,8 @@ class RouteMatching implements IRouteMatching
     /**
      * Find route according to handed name and method.
      * @param string $name - name to match up.
-     * @param string $requestMethod - method of looked for route.
+     * @param string $requestMethod - method of route looked for.
+     * @throws NotFoundException - if couldn't find any matching route in collection
      * @return IRoute - route from collection
      */
     public function matchRouteByName(string $routeName, string $requestMethod = 'GET'): IRoute

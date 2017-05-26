@@ -4,7 +4,7 @@ namespace Currency\Routing;
 
 /**
  * Class DataRendering responsible for rendering data from URL and input stream.
- * @package Webqms\Routing
+ * @package Currency\Routing
  */
 class DataRendering
 {
@@ -17,7 +17,7 @@ class DataRendering
     public function renderFromUrl(string $url, IRoute $route): array
     {
         if ($route->isFilterEnabled()) {
-            $data = $this->renderFilter($url);
+            $data = $this->renderTheFilter($url);
         }
         $data['details'] = $this->renderByRegex($url, $route->getUrl());
 
@@ -46,7 +46,12 @@ class DataRendering
         return $resources[1] ?? [];
     }
 
-    private function renderFilter(string $url): array
+    /**
+     * Render the filter of URL (i.e. everything right after question mark)
+     * @param string $url
+     * @return array - data extracted from Filter
+     */
+    private function renderTheFilter(string $url): array
     {
         $chunks = explode('?', $url);
         if (count($chunks) === 2) {
