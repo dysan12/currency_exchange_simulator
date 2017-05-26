@@ -8,7 +8,7 @@ use Currency\Exceptions\CredentialsException;
 use Currency\Exceptions\TokenException;
 
 /**
- * Class Authorization handle generating tokens. Every token has 20 minutes of life. Every use of valid token extend life to
+ * Class Authorization handle generating tokens. Every token has 20 minutes life. Every use of valid token extend life to
  * another 20 minutes.
  * @package Currency\MVC\Models
  */
@@ -22,13 +22,14 @@ class Authorization extends Model
     }
 
     /**
-     * Check if provided hash is equal to any credentials from DB.
+     * Check if provided hash is equal to any credentials from DB. Authentication based on Digest Auth.
      * @param string $response
      * @param string $realm
      * @param string $nonce
      * @param string $methodRequest
      * @param string $urlRequest
      * @return string - name of matched user
+     * @throws CredentialsException - throws if provided credentials are invalid
      */
     public function authCredentials(string $response, string $realm, string $nonce, string $methodRequest, string $urlRequest): string
     {
@@ -53,8 +54,8 @@ class Authorization extends Model
 
     /**
      * Check whether random token is not occupied, if so draw another one.
-     * @return array - generated token with expiration time.
-     * @throws TokenException - if token was not created throw exception.
+     * @return array - generated token with expiration time ['tokenID' => $tokenID, 'lifeTime' => $lifeTime].
+     * @throws TokenException - throws if token was not created.
      */
     public function generateToken(string $userLogin): array
     {
@@ -83,7 +84,7 @@ class Authorization extends Model
      * Check if token is valid or if is expired.
      * @param string $tokenID
      * @return array - token details
-     * @throws TokenException - throw if provided token is expired or is invalid.
+     * @throws TokenException - throws if provided token is expired or is invalid.
      */
     public function checkToken(string $tokenID)
     {
@@ -120,6 +121,11 @@ class Authorization extends Model
         return $this->dbConnection->executeQuery($sqlQuery);
     }
 
+    /**
+     * Delete Token from DB.
+     * @param string $tokenID - token ID
+     * @return bool
+     */
     private function deleteToken(string $tokenID): bool
     {
         $sqlQuery = "DELETE FROM tokens WHERE id_token=:tokenID";
