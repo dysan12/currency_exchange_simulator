@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Michal
- * Date: 2017-05-22
- * Time: 21:06
- */
 
 namespace Currency\Database;
 

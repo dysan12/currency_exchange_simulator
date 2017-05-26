@@ -11,7 +11,7 @@ class MySQL implements IDbProvider
     private $currentExecution;
 
     /**
-     * Instantiate connection between server and DBMS.
+     * Instantiate connection between server and DBMS
      * @param array $config - configuration array consist of [host, dbName, user, password] indexes.
      */
     public function initializeConnection(array $config): void
