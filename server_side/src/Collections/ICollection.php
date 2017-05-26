@@ -21,7 +21,7 @@ interface ICollection
     public function addItem($value, $index);
 
     /**
-     * Get item from collection, if item not exists throw ItemCollectionException
+     * Get item from collection, if item do not exists throw ItemCollectionException
      * @param $index
      * @return mixed
      */

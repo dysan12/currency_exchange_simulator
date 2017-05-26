@@ -13,6 +13,12 @@ use Currency\Exceptions\DbProviderException;
 
 class DbCreator implements ICreator
 {
+    /**
+     * Create instance of DbProvider
+     * @param string $provider - name of DbProvider
+     * @return IDbProvider - created DbProvider
+     * @throws DbProviderException - throws if given provider wasn't implemented yet
+     */
     public function create(string $provider): IDbProvider
     {
         $className = 'Currency\Database\\' . $provider;

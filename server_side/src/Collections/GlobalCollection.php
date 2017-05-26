@@ -18,6 +18,11 @@ class GlobalCollection implements ICollection
         $this->collection[$name] = $value;
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     * @throws ItemCollectionException
+     */
     public function getItem($name)
     {
         if (isset($this->collection[$name]))

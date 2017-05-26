@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Michal
- * Date: 2017-05-22
- * Time: 21:12
- */
 
 namespace Currency\Database;
 
@@ -15,13 +9,12 @@ class MySQL implements IDbProvider
 {
     private $connection = null;
     private $currentExecution;
-    private $result;
 
     /**
      * Instantiate connection between server and DBMS.
      * @param array $config - configuration array consist of [host, dbName, user, password] indexes.
      */
-    public function initializeConnection(array $config)
+    public function initializeConnection(array $config): void
     {
         $this->connection = new \PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbName'] . ';charset=utf8',
             $config['user'], $config['password']);
@@ -30,6 +23,13 @@ class MySQL implements IDbProvider
         $this->connection->setAttribute(\PDO::ATTR_CASE, \PDO::CASE_LOWER);
     }
 
+    /**
+     * Bind values to query and execute it.
+     * @param string $query - SQL query
+     * @param array $valuesToBind - values to bind for eg. ['name' => 'Michal'] would be bound to 'id = :name'
+     * @return bool - result of executing
+     * @throws DbQueryException - throws if PDO connection wouldn't be created earlier
+     */
     public function executeQuery(string $query, array $valuesToBind = []): bool
     {
         if ($this->connection instanceof \PDO) {
@@ -47,17 +47,22 @@ class MySQL implements IDbProvider
     }
 
     /**
-     * Return saved result and delete it from instance.
-     * @return array
+     * Get result from PDOStatement and return it. If there is only one result, return it as direct array.
+     * @return array - query result
      */
     public function getResult(): array
     {
-        $result = $this->currentExecution->fetchAll(\PDO::FETCH_ASSOC);
-        $this->currentExecution = null;
+        try {
+            $result = $this->currentExecution->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            $result = [];
+        } finally {
+            $this->currentExecution = null;
 
-        if (count($result) === 1)
-            return $result[0];
+            if (count($result) === 1)
+                return $result[0];
 
-        return $result;
+            return $result;
+        }
     }
 }
