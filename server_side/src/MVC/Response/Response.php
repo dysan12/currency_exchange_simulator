@@ -17,6 +17,11 @@ class Response
             $this->setHeader($header);
     }
 
+    /**
+     * Set header included JSON response
+     * @param string $header - content of header
+     * @return Response
+     */
     public function setHeader(string $header): self
     {
         $this->response['header'] = $header;
@@ -24,6 +29,11 @@ class Response
         return $this;
     }
 
+    /**
+     * Set response included in JSON
+     * @param $response - content
+     * @return Response
+     */
     public function setResponse($response): self
     {
         $this->response['response'] = $response;
@@ -31,6 +41,10 @@ class Response
         return $this;
     }
 
+    public function getStatusCode(): string
+    {
+        return $this->statusCode;
+    }
     /**
      * Convert conveyed status code into version with textual description and save it to statusCode property.
      * @param int $statusCode
@@ -38,13 +52,13 @@ class Response
      */
     public function setStatusCode(int $statusCode): self
     {
-        $this->statusCode = $this->getStatusCodeFullVersion($statusCode);
+        $this->statusCode = $this->getStatusCodeWithText($statusCode);
 
         return $this;
     }
 
     /**
-     * Set appropriate headers and send response in JOSN format.
+     * Set appropriate headers send response in JOSN format and finish script.
      */
     public function sendResponse()
     {
@@ -55,39 +69,26 @@ class Response
     }
 
     /**
-     * Return code and textual phrase of status code.
-     * @param $statusCode
-     * @return string - full version of status code (code + textual phrase).
+     * Return code with textual phrase of status code.
+     * @param int $code - status code
+     * @return string - complete version of status code (code + textual phrase).
      */
-    private function getStatusCodeFullVersion($statusCode)
+    private function getStatusCodeWithText(int $code)
     {
-        switch ($statusCode)
-        {
-            case 200:
-                $fullVersion = '200 OK';
-                break;
-            case 201:
-                $fullVersion = '201 Created';
-                break;
-            case 204:
-                $fullVersion = '204 No Content';
-                break;
-            case 400:
-                $fullVersion = '400 Bad Request';
-                break;
-            case 401:
-                $fullVersion = '401 Unauthorized ';
-                break;
-            case 403:
-                $fullVersion = '403 Forbidden';
-                break;
-            case 404:
-                $fullVersion = '404 Not Found';
-                break;
-            case 500:
-                $fullVersion = '500 Internal Server Error';
-                break;
-        }
-        return $fullVersion ?? '200 OK';
+        $statusCodes = [
+            200 => 'OK',
+            201 => 'Created',
+            204 => 'No Content',
+            400 => 'Bad Request',
+            401 => 'Unauthorized',
+            403 => 'Forbidden',
+            404 => 'Not Found',
+            500 => 'Internal Server Error'
+        ];
+
+        if (array_key_exists($code, $statusCodes))
+            return $statusCodes . ' ' . $statusCodes[$code];
+
+        return '200 OK';
     }
 }
