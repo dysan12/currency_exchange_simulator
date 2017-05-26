@@ -1,29 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
 use PHPUnit\Framework\TestCase;
 
 class DataRenderingTest extends TestCase
 {
-    private $routeMatching;
-
-
-    public function setUp()
-    {
-        $collection = new Currency\Routing\RoutesCollection();
-
-        $collection->addItem(new Currency\Routing\Route('getUser', '/users/([\w%-]{1,30})', [
-            'type' => 'resource',
-            'requestMethod' => 'GET'
-        ]));
-        $collection->addItem(new Currency\Routing\Route('newUser', '/users', [
-            'type' => 'collection',
-            'requestMethod' => 'POST'
-        ]));
-    }
     /**
      * @dataProvider arrayWithUrlsNVariables
      */
-    public function testIf_RenderURLDataReturnsAllData(string $url, array $result, Currency\Routing\IRoute $route)
+    public function testRenderingFromUrl_WithSpecificUrl_ReturnsAllIncludedData(string $url, array $result, Currency\Routing\IRoute $route)
     {
         $dataRender = new Currency\Routing\DataRendering();
         $this->assertEquals($result, $dataRender->renderFromUrl($url, $route));
