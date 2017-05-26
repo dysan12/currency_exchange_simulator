@@ -25,7 +25,7 @@ class LoggingTest extends TestCase
     /**
      * @dataProvider arrayCredentials
      */
-    public function testCheckingIf_AuthCredentials_WillReturnTrueWithCorrectData(string $login, string $password)
+    public function testAuthorizationCredentials_WithCorrectData_ReturnsTrue(string $login, string $password)
     {
         $hashingAlgorithm = 'sha3-256';
 
