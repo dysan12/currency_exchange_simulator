@@ -23,7 +23,7 @@ class GlobalCollection implements ICollection
         if (isset($this->collection[$name]))
             return $this->collection[$name];
 
-        throw new ItemCollectionException('requested item was not set');
+        throw new ItemCollectionException('requested item:"' . $name . '" was not set');;
     }
 
     public function getCollection(): array
