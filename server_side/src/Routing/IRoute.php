@@ -2,9 +2,6 @@
 
 namespace Currency\Routing;
 
-
-use Currency\Classes\Interfaces\ICollection;
-
 interface IRoute
 {
     public function getName(): string;
@@ -21,6 +18,10 @@ interface IRoute
 
     public function getType(): string;
 
+    /**
+     * Check if filter is enabled(according to route type)
+     * @return bool
+     */
     public function isFilterEnabled(): bool;
 
 }
