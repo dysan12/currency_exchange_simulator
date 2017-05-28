@@ -4,8 +4,16 @@ namespace Currency\MVC\Controllers;
 
 use Currency\MVC\Response\Response;
 
+/**
+ * Class Others controller for not categorized requests.
+ * @package Rates\MVC\Controllers
+ */
 class Others extends Controller
 {
+
+    /**
+     * Response with 404 code with information about most similar route.
+     */
     public function returnNotFound()
     {
         $similarRoute = $this->globalVars->getItem('similarRoute');

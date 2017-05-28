@@ -6,13 +6,25 @@ namespace Currency\MVC\Controllers;
 use Currency\Collections\ArrayCollection;
 use Currency\Exceptions\DbQueryCreatingFailure;
 use Currency\Exceptions\DbQueryValueNotUnique;
+use Currency\Exceptions\DbQueryValueTooLong;
 use Currency\Exceptions\ItemCollectionException;
 use Currency\MVC\Response\Response;
 use Currency\MVC\Models;
 
+/**
+ * Class UsersRestricted controller with actions which not require user authentication.
+ * @package Rates\MVC\Controllers
+ */
 class UsersRestricted extends Controller
 {
 
+    /**
+     * Create user.
+     * Generates response accordingly(code - reason):
+     *      201 - if user is created
+     *      401 - if passed values are: too long, some of its are not unique, one of its were not given
+     *      500 - if problem with executing query occur
+     */
     public function createUser()
     {
         $dataRequest = new ArrayCollection();
@@ -53,7 +65,14 @@ class UsersRestricted extends Controller
                         ['id' => 'empty_fields', 'desc' => 'login, password, email fields are required']
                     ]
                 ]);
-
+        } catch (DbQueryValueTooLong $exception) {
+            $response
+                ->setStatusCode(400)
+                ->setResponse([
+                    'errors' => [
+                        ['id' => 'empty_fields', 'desc' => $exception->getMessage()]
+                    ]
+                ]);
         } catch (DbQueryCreatingFailure | \PDOException $exception) {
             $this->logsCreator->create('Warning')->saveMessage('PDO query', $exception);
             $response

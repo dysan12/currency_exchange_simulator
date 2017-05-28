@@ -11,13 +11,19 @@ use Currency\MVC\Models;
 use Currency\MVC\Response\Response;
 
 /**
- * Class AuthorizedController abstract class for action which require authorization. Check if provided token is valid.
- * @package Currency\MVC\Controllers
+ * Class AuthorizedController abstract class for actions which require authorization. Check if provided token is valid.
+ * @package Rates\MVC\Controllers
  */
 abstract class AuthorizedController extends Controller
 {
     protected $token;
 
+    /**
+     * AuthorizedController constructor.
+     * Generates response accordingly(code - reason):
+     *      401 - if token were not passed with request / token is invalid
+     * @param ICollection $globalVarsCollection
+     */
     public function __construct(ICollection $globalVarsCollection)
     {
         parent::__construct($globalVarsCollection);
@@ -27,7 +33,7 @@ abstract class AuthorizedController extends Controller
 
         $response = new Response('Token authorization');
 
-        try{
+        try {
             $tokenID = $dataRequest->getItem('tokenID');
             $authObj = new Models\Authorization($this->dbConnection);
             $this->token = $authObj->checkToken($tokenID);

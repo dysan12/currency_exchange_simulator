@@ -10,8 +10,20 @@ use Currency\Exceptions\TokenException;
 use Currency\MVC\Models;
 use Currency\MVC\Response\Response;
 
+/**
+ * Class Authorization controller for user authentication.
+ * @package Rates\MVC\Controllers
+ */
 class Authorization extends Controller
 {
+    /**
+     * Auth user's credentials(based on Digest Auth)
+     * Generates response accordingly(code - reason):
+     *      200 - if authorization passed, returns generated token ID.
+     *      400 - if any of authorization elements were not provided
+     *      401 - if given credentials are invalid
+     *      500 - if query execution problem occurred / problem with token generate happens
+     */
     public function login()
     {
         $model = new Models\Authorization($this->dbConnection);

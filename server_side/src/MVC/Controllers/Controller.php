@@ -10,13 +10,22 @@ use Currency\Exceptions\DbProviderException;
 use Currency\Logs\LogsCreator;
 use Currency\MVC\Response\Response;
 
-
+/**
+ * Class Controller abstract class for controllers.
+ * @package Rates\MVC\Controllers
+ */
 abstract class Controller
 {
     protected $logsCreator;
     protected $globalVars;
     protected $dbConnection;
 
+    /**
+     * Controller constructor. Saves LogsCreator, DbConnection and GlobalVars to its property.
+     * Generates response accordingly(code - reason):
+     *      500 - if cannot instantiate connection with database.
+     * @param ICollection $globalVarsCollection
+     */
     public function __construct(ICollection $globalVarsCollection)
     {
         $this->logsCreator = new LogsCreator();
@@ -47,4 +56,5 @@ abstract class Controller
 
         }
     }
+
 }
