@@ -1,15 +1,11 @@
 <?php
 
-namespace Tests;
 
-use Currency\Routing\Route;
-use PHPUnit\Framework\TestCase;
-
-class RouteTest extends TestCase
+class RouteTest extends PHPUnit\Framework\TestCase
 {
     public function testFilterAvailability_WithVarietyRoutesTypes_ReturnsCorrectly()
     {
-        $route = new Route('TestingRoute', 'test/world', ['type' => 'collection']);
+        $route = new Currency\Routing\Route('TestingRoute', 'test/world', ['type' => 'collection']);
 
         $this->assertEquals(1, $route->isFilterEnabled());
 
