@@ -7,7 +7,7 @@ use Currency\Database\IDbProvider;
 
 /**
  * TESTING CLASS
- * @package Currency\MVC\Models
+ * @package Rates\MVC\Models
  */
 class Currency extends Model
 {
