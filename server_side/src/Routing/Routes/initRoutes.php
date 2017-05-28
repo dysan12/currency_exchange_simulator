@@ -1,5 +1,5 @@
 <?php
-$routeFiles = ['users', 'rates', 'main'];
+$routeFiles = ['users','rates', 'main', 'investments'];
 
 $routesCollection = new Currency\Routing\RoutesCollection();
 
