@@ -13,10 +13,10 @@ class LogsCreator implements ICreator
      */
     public function create(string $class): ILog
     {
-        $className = $class . 'Log';
-        if (class_exists($className)) {
-            return new $className();
-        }
+        $namespace = 'Currency\Logs\\';
+        $logType = $namespace . $class . 'Log';
+        if (class_exists($logType))
+            return new $logType();
 
         return new ErrorLog();
     }
