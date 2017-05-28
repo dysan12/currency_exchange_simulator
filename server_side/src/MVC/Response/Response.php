@@ -87,7 +87,7 @@ class Response
         ];
 
         if (array_key_exists($code, $statusCodes))
-            return $statusCodes . ' ' . $statusCodes[$code];
+            return $code . ' ' . $statusCodes[$code];
 
         return '200 OK';
     }
