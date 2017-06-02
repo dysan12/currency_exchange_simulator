@@ -1,4 +1,4 @@
-CREATE DATABASE currency_exchange_simulator COLLATE utf8_polish_ci
+CREATE DATABASE currency_exchange_simulator COLLATE utf8_polish_ci;
 
 CREATE TABLE `currency_exchange_simulator`.`users`
 (

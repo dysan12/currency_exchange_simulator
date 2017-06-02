@@ -16,7 +16,7 @@ use Currency\MVC\Response\Response;
 
 /**
  * Class Rates controller for receiving rates
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 class Rates extends Controller
 {

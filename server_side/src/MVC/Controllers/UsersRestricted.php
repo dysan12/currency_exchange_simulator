@@ -13,7 +13,7 @@ use Currency\MVC\Models;
 
 /**
  * Class UsersRestricted controller with actions which not require user authentication.
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 class UsersRestricted extends Controller
 {

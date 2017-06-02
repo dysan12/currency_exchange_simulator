@@ -12,7 +12,7 @@ use Currency\MVC\Response\Response;
 
 /**
  * Class Controller abstract class for controllers.
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 abstract class Controller
 {

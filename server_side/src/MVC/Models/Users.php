@@ -12,7 +12,7 @@ use Currency\Exceptions\DbQueryValueTooLong;
 
 /**
  * Class Users handles getting and modifying user data
- * @package Rates\MVC\Models
+ * @package Currency\MVC\Models
  */
 class Users extends Model
 {

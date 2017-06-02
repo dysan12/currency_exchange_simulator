@@ -12,7 +12,7 @@ use Currency\MVC\Response\Response;
 
 /**
  * Class Authorization controller for user authentication.
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 class Authorization extends Controller
 {

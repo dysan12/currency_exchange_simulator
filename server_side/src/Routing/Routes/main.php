@@ -11,3 +11,9 @@ $routesCollection->addItem(new Currency\Routing\Route('404 page', '/404/?', [
     'requestMethod' => 'GET',
     'controllerSet' => ['Others', 'returnNotFound']
 ]));
+
+$routesCollection->addItem(new Currency\Routing\Route('index', '/?', [
+    'type' => 'site',
+    'requestMethod' => 'GET',
+    'controllerSet' => ['Others', 'index']
+]));

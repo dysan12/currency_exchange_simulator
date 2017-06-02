@@ -4,7 +4,7 @@ namespace Currency\Routing;
 
 /**
  * Class DataRendering responsible for rendering data from URL and input stream.
- * @package Rates\Routing
+ * @package Currency\Routing
  */
 class DataRendering
 {

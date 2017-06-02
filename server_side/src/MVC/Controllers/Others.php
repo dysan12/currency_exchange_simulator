@@ -6,7 +6,7 @@ use Currency\MVC\Response\Response;
 
 /**
  * Class Others controller for not categorized requests.
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 class Others extends Controller
 {
@@ -34,5 +34,9 @@ class Others extends Controller
             ])
             ->sendResponse();
 
+    }
+    public function index()
+    {
+        
     }
 }

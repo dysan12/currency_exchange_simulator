@@ -10,7 +10,7 @@ use Currency\Exceptions\TokenException;
 /**
  * Class Authorization handle generating tokens. Every token has 20 minutes life. Every use of valid token extend life to
  * another 20 minutes.
- * @package Rates\MVC\Models
+ * @package Currency\MVC\Models
  */
 class Authorization extends Model
 {

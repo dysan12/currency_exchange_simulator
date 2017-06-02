@@ -12,7 +12,7 @@ use Currency\MVC\Response\Response;
 
 /**
  * Class AuthorizedController abstract class for actions which require authorization. Check if provided token is valid.
- * @package Rates\MVC\Controllers
+ * @package Currency\MVC\Controllers
  */
 abstract class AuthorizedController extends Controller
 {
