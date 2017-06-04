@@ -23,6 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+
 SOURCES += \
         main.cpp \
         menuwindow.cpp \
@@ -30,12 +31,11 @@ SOURCES += \
     loginmodel.cpp \
     registerwindow.cpp \
     registermodel.cpp \
-    investmentswindow.cpp \
-    windowmodel.cpp \
-    investmentsmodel.cpp \
-    addinvestment.cpp \
-    usersettings.cpp \
-    modifyinvestment.cpp
+    logincontroller.cpp \
+    src/logger/logscreator.cpp \
+    src/logger/logshandler.cpp \
+    src/exceptions/exception.cpp \
+    src/logger/errorslog.cpp
 
 HEADERS += \
         menuwindow.h \
@@ -43,18 +43,20 @@ HEADERS += \
     loginmodel.h \
     registerwindow.h \
     registermodel.h \
-    investmentswindow.h \
-    windowmodel.h \
-    investmentsmodel.h \
-    addinvestment.h \
-    usersettings.h \
-    modifyinvestment.h
+    config.h \
+    logincontroller.h \
+    exception.h \
+    exceptions/arrayssizeincompatible.h \
+    src/logger/logscreator.h \
+    src/logger/logshandler.h \
+    src/exceptions/exception.h \
+    src/logger/errorslog.h
+
+INCLUDEPATH += src\exceptions \
+            src\logger \
+
 
 FORMS += \
         menuwindow.ui \
     loginwindow.ui \
-    registerwindow.ui \
-    investmentswindow.ui \
-    addinvestment.ui \
-    usersettings.ui \
-    modifyinvestment.ui
+    registerwindow.ui

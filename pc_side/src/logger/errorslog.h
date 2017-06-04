@@ -1,11 +1,16 @@
+#include <string>
+
+#include "logshandler.h"
+
 #ifndef ERRORSLOG_H
 #define ERRORSLOG_H
 
 
-class errorsLog
+class ErrorsLog : public LogsHandler
 {
 public:
-    errorsLog();
+    ErrorsLog();
+    void saveLog(const char* module, Exception *exception);
 };
 
 #endif // ERRORSLOG_H
