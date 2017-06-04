@@ -29,16 +29,32 @@ SOURCES += \
     loginwindow.cpp \
     loginmodel.cpp \
     registerwindow.cpp \
-    registermodel.cpp
+    registermodel.cpp \
+    investmentswindow.cpp \
+    windowmodel.cpp \
+    investmentsmodel.cpp \
+    addinvestment.cpp \
+    usersettings.cpp \
+    modifyinvestment.cpp
 
 HEADERS += \
         menuwindow.h \
     loginwindow.h \
     loginmodel.h \
     registerwindow.h \
-    registermodel.h
+    registermodel.h \
+    investmentswindow.h \
+    windowmodel.h \
+    investmentsmodel.h \
+    addinvestment.h \
+    usersettings.h \
+    modifyinvestment.h
 
 FORMS += \
         menuwindow.ui \
     loginwindow.ui \
-    registerwindow.ui
+    registerwindow.ui \
+    investmentswindow.ui \
+    addinvestment.ui \
+    usersettings.ui \
+    modifyinvestment.ui

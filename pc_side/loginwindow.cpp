@@ -8,6 +8,7 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+    ui->loginField->setFocus();
 }
 
 LoginWindow::~LoginWindow()
@@ -25,7 +26,7 @@ void LoginWindow::on_loginButton_clicked()
         if(mod->loginSuccessful())
             this->close();
         else
-            QMessageBox::information(this, "Bad login/password", "Provided login credentials aren't true!");
+            QMessageBox::information(this, "Bad information provided", "Provided login credentials aren't true!");
     }
 }
 
