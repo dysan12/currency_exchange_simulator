@@ -21,10 +21,12 @@ void RegisterWindow::on_registerButton_clicked()
     else
     {
         RegisterModel *mod=new RegisterModel(ui->loginField->text(), ui->passwordField->text(), ui->emailField->text(), ui->nameField->text());
-        if(mod->registerSuccessful())
+        if(mod->registerSuccessful()){
+            QMessageBox::information(this, "Registering successful", "You can now use your new account");
             this->close();
+        }
         else
-            QMessageBox::information(this, "Bad information combination", "Provided register credentials aren't avaible!");
+            QMessageBox::information(this, "Bad information provided", "Provided register credentials aren't avaible!");
     }
 }
 

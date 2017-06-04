@@ -19,6 +19,10 @@ public:
 private slots:
     void on_exitButton_clicked();
 
+    void on_investmentsButton_clicked();
+
+    void on_settingsButton_clicked();
+
 private:
     Ui::MenuWindow *ui;
 
