@@ -32,10 +32,16 @@ SOURCES += \
     registerwindow.cpp \
     registermodel.cpp \
     logincontroller.cpp \
+    investmentswindow.cpp \
+    investmentsmodel.cpp \
+    addinvestment.cpp \
+    modifyinvestment.cpp \
+    usersettings.cpp \
+    windowmodel.cpp \
     src/logger/logscreator.cpp \
     src/logger/logshandler.cpp \
-    src/exceptions/exception.cpp \
-    src/logger/errorslog.cpp
+    src/logger/errorslog.cpp \
+    src/exceptions/exception.cpp
 
 HEADERS += \
         menuwindow.h \
@@ -45,18 +51,28 @@ HEADERS += \
     registermodel.h \
     config.h \
     logincontroller.h \
-    exception.h \
+    investmentswindow.h \
+    investmentsmodel.h \
+    addinvestment.h \
+    modifyinvestment.h \
+    usersettings.h \
+    windowmodel.h \
     exceptions/arrayssizeincompatible.h \
     src/logger/logscreator.h \
     src/logger/logshandler.h \
-    src/exceptions/exception.h \
-    src/logger/errorslog.h
+    src/logger/errorslog.h \
+    src/exceptions/exception.h
 
 INCLUDEPATH += src\exceptions \
-            src\logger \
+            src\logger
 
 
 FORMS += \
         menuwindow.ui \
     loginwindow.ui \
-    registerwindow.ui
+    registerwindow.ui \
+    investmentswindow.ui \
+    addinvestment.ui \
+    modifyinvestment.ui \
+    usersettings.ui
+
