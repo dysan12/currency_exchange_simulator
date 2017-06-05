@@ -5,7 +5,7 @@ ErrorsLog::ErrorsLog()
 
 }
 
-void ErrorsLog::saveLog(const char* module, Exception *exception)
+void ErrorsLog::saveLog(const std::string module, Exception *exception)
 {
    std::ofstream logFile;
    logFile.open("logs\\errors.log", std::ios::app);

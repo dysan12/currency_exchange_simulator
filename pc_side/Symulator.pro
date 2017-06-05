@@ -26,53 +26,68 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        menuwindow.cpp \
-    loginwindow.cpp \
-    loginmodel.cpp \
-    registerwindow.cpp \
-    registermodel.cpp \
-    logincontroller.cpp \
-    investmentswindow.cpp \
-    investmentsmodel.cpp \
-    addinvestment.cpp \
-    modifyinvestment.cpp \
-    usersettings.cpp \
-    windowmodel.cpp \
+#OTHER COMPONENTS
     src/logger/logscreator.cpp \
     src/logger/logshandler.cpp \
     src/logger/errorslog.cpp \
-    src/exceptions/exception.cpp
+    src/logger/warningslog.cpp \
+    src/exceptions/exception.cpp \
+#VIEWS
+    src/mvc/views/menuwindow.cpp \
+    src/mvc/views/loginwindow.cpp \
+    src/mvc/views/registerwindow.cpp \
+    src/mvc/views/investmentswindow.cpp \
+    src/mvc/views/addinvestment.cpp \
+    src/mvc/views/modifyinvestment.cpp \
+    src/mvc/views/usersettings.cpp \
+#MODELS
+    src/mvc/models/model.cpp \
+    src/mvc/models/loginmodel.cpp \
+    src/mvc/models/investmentsmodel.cpp \
+    src/mvc/models/registermodel.cpp \    
+#CONTROLLERS
+    src/mvc/controllers/controller.cpp \
+    src/mvc/controllers/logincontroller.cpp
 
 HEADERS += \
-        menuwindow.h \
-    loginwindow.h \
-    loginmodel.h \
-    registerwindow.h \
-    registermodel.h \
-    config.h \
-    logincontroller.h \
-    investmentswindow.h \
-    investmentsmodel.h \
-    addinvestment.h \
-    modifyinvestment.h \
-    usersettings.h \
-    windowmodel.h \
-    exceptions/arrayssizeincompatible.h \
+        config.h \
+#OTHER COMPONENTS
     src/logger/logscreator.h \
     src/logger/logshandler.h \
     src/logger/errorslog.h \
-    src/exceptions/exception.h
+    src/logger/warningslog.h \
+    src/exceptions/exception.h \
+    src/exceptions/datatoolongexception.h \
+#VIEWS
+    src/mvc/views/menuwindow.h \
+    src/mvc/views/loginwindow.h \
+    src/mvc/views/addinvestment.h \
+    src/mvc/views/modifyinvestment.h \
+    src/mvc/views/usersettings.h \
+    src/mvc/views/registerwindow.h \
+    src/mvc/views/investmentswindow.h \
+#MODELS
+    src/mvc/models/model.h \
+    src/mvc/models/loginmodel.h \
+    src/mvc/models/registermodel.h \
+    src/mvc/models/investmentsmodel.h \    
+#CONTROLLERS
+    src/mvc/controllers/controller.h \
+    src/mvc/controllers/logincontroller.h
 
 INCLUDEPATH += src\exceptions \
-            src\logger
+            src\logger \
+            src\mvc\models \
+            src\mvc\views \
+            src\mvc\controllers
 
 
 FORMS += \
-        menuwindow.ui \
-    loginwindow.ui \
-    registerwindow.ui \
-    investmentswindow.ui \
-    addinvestment.ui \
-    modifyinvestment.ui \
-    usersettings.ui
+        src/mvc/views/menuwindow.ui \
+    src/mvc/views/loginwindow.ui \
+    src/mvc/views/registerwindow.ui \
+    src/mvc/views/investmentswindow.ui \
+    src/mvc/views/addinvestment.ui \
+    src/mvc/views/modifyinvestment.ui \
+    src/mvc/views/usersettings.ui
 

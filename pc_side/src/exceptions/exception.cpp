@@ -2,9 +2,9 @@
 
 #include "exception.h"
 
-Exception::Exception(char* message):message(message){}
+Exception::Exception(const std::string message):message(message){}
 
-char* Exception::getMessage()
+std::string Exception::getMessage()
 {
     return this->message;
 }

@@ -1,15 +1,15 @@
-#include <string>
-
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
+
+#include <string>
 
 
 class Exception
 {
-    char* message;
+    std::string message;
 public:
-    Exception(char* message);
-    char* getMessage();
+    Exception(const std::string message);
+    std::string getMessage();
 };
 
 #endif // EXCEPTION_H

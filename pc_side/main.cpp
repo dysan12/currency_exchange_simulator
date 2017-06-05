@@ -1,26 +1,29 @@
-#include "config.h"
-//#include "serverconnection.h"
-#include "menuwindow.h"
 #include <QApplication>
 
-#include "logscreator.h"
-#include "exception.h"
+
+#include "config.h"
+#include "logincontroller.h"
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //LOGGER TEST
-    /*
-    LogsCreator logCr;
-    LogsHandler * logger = logCr.create("ErrorsLog");
 
-    Exception *exc = new Exception("jakas wiadomosc");
-
-    logger->saveLog("jakis modul", exc);
-*/
-    MenuWindow *menu=new MenuWindow();
-    menu->show();
+    LogInController *controller = new LogInController();
+    controller->generateWindow();
 
     return a.exec();
 }
+/*
+ * SAMPLE USE OF EXCPETIONS AND LOGS
+
+    #include "logscreator.h"
+    #include "exception.h"
+
+    LogsCreator logCr;
+    LogsHandler * logger = logCr.create("error");
+
+    Exception *exc = new Exception("some message");
+
+    logger->saveLog("some module", exc);
+*/

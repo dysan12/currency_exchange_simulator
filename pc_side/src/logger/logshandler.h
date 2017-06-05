@@ -1,3 +1,6 @@
+#ifndef LOGSHANDLER_H
+#define LOGSHANDLER_H
+
 #include <time.h>
 #include <string>
 #include <iostream>
@@ -6,16 +9,12 @@
 #include "exception.h"
 
 
-#ifndef LOGSHANDLER_H
-#define LOGSHANDLER_H
-
-
 class LogsHandler
 {
 public:
     LogsHandler();
-    virtual void saveLog(const char* module, Exception *exception) = 0;
-    std::string formatMessage(const char* module, const char* message);
+    virtual void saveLog(const std::string, Exception *exception) = 0;
+    std::string formatMessage(const std::string module, const std::string message);
 };
 
 #endif // LOGSHANDLER_H

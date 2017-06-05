@@ -1,16 +1,16 @@
+#ifndef LOGSCREATOR_H
+#define LOGSCREATOR_H
+
 #include <string>
 
 #include "logshandler.h"
-
-#ifndef LOGSCREATOR_H
-#define LOGSCREATOR_H
 
 
 class LogsCreator
 {
 public:
     LogsCreator();
-    LogsHandler * create(const char* logType);
+    LogsHandler * create(const std::string logType);
 };
 
 #endif // LOGSCREATOR_H
