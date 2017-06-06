@@ -18,11 +18,15 @@ public:
     ~MenuWindow();
 
 private slots:
-    void on_exitButton_clicked();
+    void on_stockStatusButton_clicked();
 
     void on_investmentsButton_clicked();
 
     void on_settingsButton_clicked();
+
+    void on_explanationButton_clicked();
+
+    void on_exitButton_clicked();
 
 private:
     Ui::MenuWindow *ui;

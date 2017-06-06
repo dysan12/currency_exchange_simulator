@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    LogInController *controller = new LogInController();
-    controller->generateWindow();
+    LoginWindow *login=new LoginWindow();
+    login->show();
 
     return a.exec();
 }

@@ -1,17 +1,19 @@
-#ifndef REGISTERMODEL_H
-#define REGISTERMODEL_H
+#ifndef USERMODEL_H
+#define USERMODEL_H
 
 #include<QString>
 
 #include "model.h"
 #include "datatoolongexception.h"
 
-class RegisterModel : public Model
+
+class UserModel : public Model
 {
 
 public:
-    RegisterModel();
+    UserModel();
+    bool verifyCredentials(QString login, QString password);
     bool registerUser(QString login, QString password, QString email, QString name);
 };
 
-#endif // REGISTERMODEL_H
+#endif // USERMODEL_H

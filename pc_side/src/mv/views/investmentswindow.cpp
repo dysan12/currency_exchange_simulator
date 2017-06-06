@@ -1,8 +1,8 @@
 #include "investmentswindow.h"
 #include "investmentsmodel.h"
 #include "ui_investmentswindow.h"
-#include "addinvestment.h"
-#include "modifyinvestment.h"
+#include "addinvestmentwindow.h"
+#include "modifyinvestmentwindow.h"
 
 InvestmentsWindow::InvestmentsWindow(QWidget *parent) :
     QDialog(parent),
@@ -43,7 +43,7 @@ void InvestmentsWindow::on_addButton_clicked()
         ui->invesmentsList->removeItem(0);
     }
 
-    AddInvestment *addNewInv=new AddInvestment();
+    AddInvestmentWindow *addNewInv=new AddInvestmentWindow();
     addNewInv->exec();
 
     invAmnt=invMod->investmentsAmount();
@@ -60,7 +60,7 @@ void InvestmentsWindow::on_modifyButton_clicked()
         ui->invesmentsList->removeItem(0);
     }
 
-    ModifyInvestment *modifyInv=new ModifyInvestment();
+    ModifyInvestmentWindow *modifyInv=new ModifyInvestmentWindow();
     modifyInv->exec();
 
     invAmnt=invMod->investmentsAmount();

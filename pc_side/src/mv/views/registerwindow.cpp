@@ -3,7 +3,7 @@
 
 RegisterWindow::RegisterWindow(QWidget *parent) : QDialog(parent), ui(new Ui::RegisterWindow)
 {
-    this->registerModel = new RegisterModel();
+    this->userModel = new UserModel();
     ui->setupUi(this);
 }
 
@@ -23,7 +23,7 @@ void RegisterWindow::on_registerButton_clicked()
     }
 
     try {
-        this->registerModel->registerUser(
+        this->userModel->registerUser(
                      ui->loginField->text(),
                      ui->passwordField->text(),
                      ui->emailField->text(),

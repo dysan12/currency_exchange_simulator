@@ -33,21 +33,17 @@ SOURCES += \
     src/logger/warningslog.cpp \
     src/exceptions/exception.cpp \
 #VIEWS
-    src/mvc/views/menuwindow.cpp \
-    src/mvc/views/loginwindow.cpp \
-    src/mvc/views/registerwindow.cpp \
-    src/mvc/views/investmentswindow.cpp \
-    src/mvc/views/addinvestment.cpp \
-    src/mvc/views/modifyinvestment.cpp \
-    src/mvc/views/usersettings.cpp \
+    src/mv/views/menuwindow.cpp \
+    src/mv/views/loginwindow.cpp \
+    src/mv/views/registerwindow.cpp \
+    src/mv/views/investmentswindow.cpp \
+    src/mv/views/addinvestmentwindow.cpp \
+    src/mv/views/modifyinvestmentwindow.cpp \
+    src/mv/views/usersettingswindow.cpp \
 #MODELS
-    src/mvc/models/model.cpp \
-    src/mvc/models/loginmodel.cpp \
-    src/mvc/models/investmentsmodel.cpp \
-    src/mvc/models/registermodel.cpp \    
-#CONTROLLERS
-    src/mvc/controllers/controller.cpp \
-    src/mvc/controllers/logincontroller.cpp
+    src/mv/models/model.cpp \
+    src/mv/models/usermodel.cpp \
+    src/mv/models/investmentsmodel.cpp
 
 HEADERS += \
         config.h \
@@ -59,35 +55,31 @@ HEADERS += \
     src/exceptions/exception.h \
     src/exceptions/datatoolongexception.h \
 #VIEWS
-    src/mvc/views/menuwindow.h \
-    src/mvc/views/loginwindow.h \
-    src/mvc/views/addinvestment.h \
-    src/mvc/views/modifyinvestment.h \
-    src/mvc/views/usersettings.h \
-    src/mvc/views/registerwindow.h \
-    src/mvc/views/investmentswindow.h \
+    src/mv/views/menuwindow.h \
+    src/mv/views/loginwindow.h \
+    src/mv/views/addinvestmentwindow.h \
+    src/mv/views/modifyinvestmentwindow.h \
+    src/mv/views/usersettingswindow.h \
+    src/mv/views/registerwindow.h \
+    src/mv/views/investmentswindow.h \
 #MODELS
-    src/mvc/models/model.h \
-    src/mvc/models/loginmodel.h \
-    src/mvc/models/registermodel.h \
-    src/mvc/models/investmentsmodel.h \    
-#CONTROLLERS
-    src/mvc/controllers/controller.h \
-    src/mvc/controllers/logincontroller.h
+    src/mv/models/model.h \
+    src/mv/models/usermodel.h \
+    src/mv/models/investmentsmodel.h
 
 INCLUDEPATH += src\exceptions \
             src\logger \
-            src\mvc\models \
-            src\mvc\views \
-            src\mvc\controllers
+            src\mv\models \
+            src\mv\views \
+            src\mv\controllers
 
 
 FORMS += \
-        src/mvc/views/menuwindow.ui \
-    src/mvc/views/loginwindow.ui \
-    src/mvc/views/registerwindow.ui \
-    src/mvc/views/investmentswindow.ui \
-    src/mvc/views/addinvestment.ui \
-    src/mvc/views/modifyinvestment.ui \
-    src/mvc/views/usersettings.ui
+        src/mv/views/menuwindow.ui \
+    src/mv/views/loginwindow.ui \
+    src/mv/views/registerwindow.ui \
+    src/mv/views/investmentswindow.ui \
+    src/mv/views/addinvestmentwindow.ui \
+    src/mv/views/modifyinvestmentwindow.ui \
+    src/mv/views/usersettingswindow.ui
 

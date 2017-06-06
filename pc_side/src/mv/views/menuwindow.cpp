@@ -2,7 +2,7 @@
 #include "ui_menuwindow.h"
 #include "loginwindow.h"
 #include "investmentswindow.h"
-#include "usersettings.h"
+#include "usersettingswindow.h"
 
 MenuWindow::MenuWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,23 +16,34 @@ MenuWindow::~MenuWindow()
     delete ui;
 }
 
-void MenuWindow::on_exitButton_clicked()
+void MenuWindow::on_stockStatusButton_clicked()
 {
-    this->close();
+
+
 }
 
 void MenuWindow::on_investmentsButton_clicked()
 {
-    InvestmentsWindow *inv=new InvestmentsWindow();
+    InvestmentsWindow *investmentsView = new InvestmentsWindow();
     this->hide();
-    inv->exec();
+    investmentsView->exec();
     this->show();
 }
 
 void MenuWindow::on_settingsButton_clicked()
 {
-    UserSettings *usr=new UserSettings();
+    UserSettingsWindow *userSettingsView = new UserSettingsWindow();
     this->hide();
-    usr->exec();
+    userSettingsView->exec();
     this->show();
+}
+
+void MenuWindow::on_explanationButton_clicked()
+{
+
+}
+
+void MenuWindow::on_exitButton_clicked()
+{
+    this->close();
 }

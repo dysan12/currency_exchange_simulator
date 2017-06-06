@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QMessageBox>
 
-#include "registermodel.h"
+#include "usermodel.h"
 #include "datatoolongexception.h"
 
 namespace Ui {
@@ -15,7 +15,7 @@ class RegisterWindow : public QDialog
 {
     Q_OBJECT
 private:
-    RegisterModel *registerModel;
+    UserModel *userModel;
 public:
     explicit RegisterWindow(QWidget *parent = 0);
     ~RegisterWindow();

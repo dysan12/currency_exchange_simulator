@@ -3,7 +3,7 @@
 
 LoginWindow::LoginWindow(QWidget *parent) : QDialog(parent), ui(new Ui::LoginWindow)
 {
-    this->loginModel = new LogInModel();
+    this->userModel = new UserModel();
 
     ui->setupUi(this);
     ui->loginField->setFocus();
@@ -23,7 +23,7 @@ void LoginWindow::on_loginButton_clicked()
         return;
     }
 
-    loggedIn = this->loginModel->verifyCredentials(ui->loginField->text(), ui->passwordField->text());
+    loggedIn = this->userModel->verifyCredentials(ui->loginField->text(), ui->passwordField->text());
 
     if (loggedIn) {
         this->generateMenu();

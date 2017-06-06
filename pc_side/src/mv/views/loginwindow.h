@@ -7,7 +7,7 @@
 #include "registerwindow.h"
 #include "menuwindow.h"
 
-#include "loginmodel.h"
+#include "usermodel.h"
 
 namespace Ui {
 class LoginWindow;
@@ -17,7 +17,7 @@ class LoginWindow : public QDialog
 {
     Q_OBJECT
 private:
-    LogInModel *loginModel;
+    UserModel *userModel;
     void generateMenu();
 
 public:

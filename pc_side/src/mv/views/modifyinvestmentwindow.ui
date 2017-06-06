@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddInvestment</class>
- <widget class="QDialog" name="AddInvestment">
+ <class>ModifyInvestmentWindow</class>
+ <widget class="QDialog" name="ModifyInvestmentWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,17 +13,17 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label_9">
+  <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>220</y>
-     <width>81</width>
+     <x>30</x>
+     <y>20</y>
+     <width>101</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Currency #9</string>
+    <string>Investment Name</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -39,17 +39,17 @@
     <string>Currency #7</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>370</y>
+     <y>320</y>
      <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Currency #5</string>
+    <string>Currency #4</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -78,17 +78,14 @@
     <string>Currency #6</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLineEdit" name="lineEdit_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>170</y>
-     <width>81</width>
+     <x>140</x>
+     <y>320</y>
+     <width>113</width>
      <height>21</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>Currency #1</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -104,6 +101,62 @@
     <string>Currency #8</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEdit_5">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>370</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nameField">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>170</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>170</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Currency #1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>220</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Currency #9</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
@@ -115,32 +168,6 @@
    </property>
    <property name="text">
     <string>Currency #3</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>320</y>
-     <width>81</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Currency #4</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>220</y>
-     <width>81</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Currency #2</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_11">
@@ -156,6 +183,62 @@
     <string>Amount</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEdit_6">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>170</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="modifyButton">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>40</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Modify Investment</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>220</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_7">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>270</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Currency #2</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
@@ -169,70 +252,10 @@
     <string>Amount</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>170</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>220</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>270</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>320</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>370</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>170</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
      <y>270</y>
      <width>113</width>
      <height>21</height>
@@ -259,50 +282,17 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_10">
+  <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>320</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_13">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>101</width>
+     <x>50</x>
+     <y>370</y>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Investment Name</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="nameField">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>231</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>40</y>
-     <width>141</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add Investment</string>
+    <string>Currency #5</string>
    </property>
   </widget>
   <widget class="QLabel" name="currentAmount">
@@ -316,6 +306,16 @@
    </property>
    <property name="text">
     <string>Available PLN: </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_10">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>320</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="backButton">
