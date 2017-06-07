@@ -41,7 +41,7 @@ void UserSettingsWindow::on_changeButton_clicked()
         return;
     }
 
-    UserModel clonedUser = this->user;
+    //UserModel clonedUser = this->user;
 
     //CHANGE USER DATA
 }
