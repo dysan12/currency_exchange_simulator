@@ -33,14 +33,13 @@ std::string ServerConnection::callGetRequest(std::string url){
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
     curl = curl_easy_init();
-    if(curl) { //<---jeśli nie będzie połączenia
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseString);
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());//WATTTT??? czemu url nie dziala?
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseString);
 
-        response = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-    }
+    response = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+
     curl_global_cleanup();
     return responseString;
 }

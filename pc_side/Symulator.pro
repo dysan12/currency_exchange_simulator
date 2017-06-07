@@ -99,4 +99,4 @@ FORMS += \
     src/mv/views/stockwindow.ui
 
 LIBS += \
-        -L"currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
+        -L"E:\Qt\Projects\Master\currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
