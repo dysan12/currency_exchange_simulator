@@ -8,6 +8,9 @@
 #include "menuwindow.h"
 
 #include "usermodel.h"
+#include "userhandlermodel.h"
+
+#include "invalidcredentialsexception.h"
 
 namespace Ui {
 class LoginWindow;
@@ -17,8 +20,8 @@ class LoginWindow : public QDialog
 {
     Q_OBJECT
 private:
-    UserModel *userModel;
-    void generateMenu();
+    UserHandlerModel *userHandler;
+    void generateMenu(UserModel *user);
 
 public:
     explicit LoginWindow(QWidget *parent = 0);

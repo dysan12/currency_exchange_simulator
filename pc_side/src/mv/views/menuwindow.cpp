@@ -1,14 +1,15 @@
 #include "menuwindow.h"
 #include "ui_menuwindow.h"
-#include "loginwindow.h"
-#include "investmentswindow.h"
-#include "usersettingswindow.h"
 
-MenuWindow::MenuWindow(QWidget *parent) :
+
+MenuWindow::MenuWindow(QWidget *parent, UserModel *user) :
     QMainWindow(parent),
-    ui(new Ui::MenuWindow)
+    ui(new Ui::MenuWindow),
+    user(user)
 {
     ui->setupUi(this);
+    QString greetingTxt = QString::fromStdString("Hello " + this->user->getLogin() + "!");
+    ui->greeting->setText(greetingTxt);
 }
 
 MenuWindow::~MenuWindow()
@@ -18,8 +19,10 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::on_stockStatusButton_clicked()
 {
-
-
+    StockWindow *stockView = new StockWindow();
+    this->hide();
+    stockView->exec();
+    this->show();
 }
 
 void MenuWindow::on_investmentsButton_clicked()
@@ -40,7 +43,10 @@ void MenuWindow::on_settingsButton_clicked()
 
 void MenuWindow::on_explanationButton_clicked()
 {
-
+    ExplanationWindow *explanationView = new ExplanationWindow();
+    this->hide();
+    explanationView->exec();
+    this->show();
 }
 
 void MenuWindow::on_exitButton_clicked()

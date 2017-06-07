@@ -1,13 +1,36 @@
 #include "usermodel.h"
 
-UserModel::UserModel()
+UserModel::UserModel(std::string login, std::string email, std::string name)
+    : login(login), email(email), name(name)
 {
 }
 
-bool UserModel::verifyCredentials(QString login, QString password){
-    return true;
+void UserModel::setLogin(std::string login)
+{
+    this->login = login;
 }
 
-bool UserModel::registerUser(QString login, QString password, QString email, QString name){
-    return true;
+void UserModel::setEmail(std::string email)
+{
+    this->email = email;
+}
+
+void UserModel::setName(std::string name)
+{
+    this->name = name;
+}
+
+std::string UserModel::getLogin()
+{
+    return this->login;
+}
+
+std::string UserModel::getEmail()
+{
+    return this->email;
+}
+
+std::string UserModel::getName()
+{
+    return this->name;
 }

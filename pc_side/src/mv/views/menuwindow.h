@@ -5,6 +5,14 @@
 #include <QMessageBox>
 #include <QtDebug>
 
+#include "usermodel.h"
+
+#include "stockwindow.h"
+#include "investmentswindow.h"
+#include "usersettingswindow.h"
+#include "explanationwindow.h"
+
+
 namespace Ui {
 class MenuWindow;
 }
@@ -12,9 +20,11 @@ class MenuWindow;
 class MenuWindow : public QMainWindow
 {
     Q_OBJECT
-
+private:
+    Ui::MenuWindow *ui;
+    UserModel *user;
 public:
-    explicit MenuWindow(QWidget *parent = 0);
+    explicit MenuWindow(QWidget *parent, UserModel *user);
     ~MenuWindow();
 
 private slots:
@@ -28,8 +38,6 @@ private slots:
 
     void on_exitButton_clicked();
 
-private:
-    Ui::MenuWindow *ui;
 
 };
 

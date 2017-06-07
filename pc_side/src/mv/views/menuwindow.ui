@@ -27,19 +27,6 @@
      <string>Exchange Stock Condition</string>
     </property>
    </widget>
-   <widget class="QLabel" name="loggedUserLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>201</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>There shows Logged User Info</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="investmentsButton">
     <property name="geometry">
      <rect>
@@ -92,6 +79,24 @@
      <string>Exit</string>
     </property>
    </widget>
+   <widget class="QLabel" name="greeting">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>11</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -99,7 +104,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -3,7 +3,7 @@
 
 LoginWindow::LoginWindow(QWidget *parent) : QDialog(parent), ui(new Ui::LoginWindow)
 {
-    this->userModel = new UserModel();
+    this->userHandler = new UserHandlerModel();
 
     ui->setupUi(this);
     ui->loginField->setFocus();
@@ -16,19 +16,19 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_loginButton_clicked()
 {
-    bool loggedIn = false;
+    QString login = ui->loginField->text(),
+            password = ui->passwordField->text();
 
-    if (ui->loginField->text() == "" || ui->passwordField->text() == "") {
+    if (login == "" || password == "") {
         QMessageBox::information(this, "Empty field", "Both fields must not be empty!");
         return;
     }
 
-    loggedIn = this->userModel->verifyCredentials(ui->loginField->text(), ui->passwordField->text());
-
-    if (loggedIn) {
-        this->generateMenu();
+    try {
+        UserModel *user = this->userHandler->verifyUser(login, password);
+        this->generateMenu(user);
         this->close();
-    } else {
+    } catch (InvalidCredentialsException *exception) {
         QMessageBox::information(this, "Bad information provided", "Provided login credentials aren't true!");
     }
 }
@@ -39,8 +39,8 @@ void LoginWindow::on_registerButton_clicked()
     reg->exec();
 }
 
-void LoginWindow::generateMenu()
+void LoginWindow::generateMenu(UserModel *user)
 {
-    MenuWindow * menuView = new MenuWindow();
+    MenuWindow * menuView = new MenuWindow(0, user);
     menuView->show();
 }
