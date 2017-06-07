@@ -3,14 +3,18 @@
 
 #include "config.h"
 #include "loginwindow.h"
+#include "curl/curl.h"
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    curl_global_init(CURL_GLOBAL_DEFAULT);
 
-    LoginWindow *login = new LoginWindow();
+    LoginWindow *login=new LoginWindow();
     login->show();
 
+    curl_global_cleanup();
     return a.exec();
 }
 /*

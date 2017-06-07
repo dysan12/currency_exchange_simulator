@@ -35,7 +35,7 @@ void MenuWindow::on_investmentsButton_clicked()
 
 void MenuWindow::on_settingsButton_clicked()
 {
-    UserSettingsWindow *userSettingsView = new UserSettingsWindow(0, this->user);
+    UserSettingsWindow *userSettingsView = new UserSettingsWindow();
     this->hide();
     userSettingsView->exec();
     this->show();

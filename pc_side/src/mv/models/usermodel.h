@@ -11,18 +11,15 @@ class UserModel : public Model
 private:
     std::string login,
                 email,
-                name,
-                password;
+                name;
 public:
-    UserModel(std::string login = "", std::string email = "", std::string name = "", std::string password = "");
+    UserModel(std::string login = "", std::string email = "", std::string name = "");
     void setLogin(std::string login);
     void setEmail(std::string email);
     void setName(std::string name);
-    void setPassword(std::string password);
     std::string getLogin();
     std::string getEmail();
     std::string getName();
-    std::string getPassword();
 };
 
 #endif // USERMODEL_H

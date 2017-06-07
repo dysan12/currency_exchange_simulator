@@ -2,7 +2,7 @@
 
 InvestmentsModel::InvestmentsModel()
 {
-
+    this->initializeRates();
 }
 
 InvestmentsModel::InvestmentsModel(QString invName)
@@ -20,4 +20,15 @@ int InvestmentsModel::deleteInvestment(){
 
 bool InvestmentsModel::addInvestment(){
     return true;
+}
+
+void InvestmentsModel::initializeRates(){
+    std::string url = "http://slawbit.pl/api-currencyexchange/rates/current";
+    response=new ResponseHandler();
+    servcon=new ServerConnection();
+    response->handleRatesResponse(servcon->callGetRequest(url),this->convertedRates);
+}
+
+double InvestmentsModel::getConvertedRate(int index){
+    return convertedRates[index];
 }

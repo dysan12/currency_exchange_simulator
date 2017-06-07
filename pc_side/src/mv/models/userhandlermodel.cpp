@@ -6,7 +6,7 @@ UserHandlerModel::UserHandlerModel()
 
 UserModel * UserHandlerModel::verifyUser(QString login, QString password){
 
-    return new UserModel(login.toStdString(), "mi@on.pl", "Michal", password.toStdString());
+    return new UserModel(login.toStdString(), "mi@on.pl", "Michal");
     //throw new InvalidCredentialsException();
 }
 
