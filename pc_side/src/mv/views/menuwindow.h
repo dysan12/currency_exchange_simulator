@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QtDebug>
 
 #include "usermodel.h"
 

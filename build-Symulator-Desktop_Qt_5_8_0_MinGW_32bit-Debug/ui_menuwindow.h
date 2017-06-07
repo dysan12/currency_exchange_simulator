@@ -29,11 +29,11 @@ class Ui_MenuWindow
 public:
     QWidget *centralWidget;
     QPushButton *stockStatusButton;
-    QLabel *loggedUserLabel;
     QPushButton *investmentsButton;
     QPushButton *settingsButton;
     QPushButton *explanationButton;
     QPushButton *exitButton;
+    QLabel *greeting;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -48,9 +48,6 @@ public:
         stockStatusButton = new QPushButton(centralWidget);
         stockStatusButton->setObjectName(QStringLiteral("stockStatusButton"));
         stockStatusButton->setGeometry(QRect(180, 50, 141, 41));
-        loggedUserLabel = new QLabel(centralWidget);
-        loggedUserLabel->setObjectName(QStringLiteral("loggedUserLabel"));
-        loggedUserLabel->setGeometry(QRect(10, 10, 201, 21));
         investmentsButton = new QPushButton(centralWidget);
         investmentsButton->setObjectName(QStringLiteral("investmentsButton"));
         investmentsButton->setGeometry(QRect(180, 110, 141, 41));
@@ -63,10 +60,16 @@ public:
         exitButton = new QPushButton(centralWidget);
         exitButton->setObjectName(QStringLiteral("exitButton"));
         exitButton->setGeometry(QRect(210, 380, 81, 41));
+        greeting = new QLabel(centralWidget);
+        greeting->setObjectName(QStringLiteral("greeting"));
+        greeting->setGeometry(QRect(11, 11, 161, 31));
+        QFont font;
+        font.setPointSize(11);
+        greeting->setFont(font);
         MenuWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MenuWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 500, 20));
+        menuBar->setGeometry(QRect(0, 0, 500, 21));
         MenuWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MenuWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -84,11 +87,11 @@ public:
     {
         MenuWindow->setWindowTitle(QApplication::translate("MenuWindow", "MenuWindow", Q_NULLPTR));
         stockStatusButton->setText(QApplication::translate("MenuWindow", "Exchange Stock Condition", Q_NULLPTR));
-        loggedUserLabel->setText(QApplication::translate("MenuWindow", "There shows Logged User Info", Q_NULLPTR));
         investmentsButton->setText(QApplication::translate("MenuWindow", "User's Investments", Q_NULLPTR));
         settingsButton->setText(QApplication::translate("MenuWindow", "User Settings", Q_NULLPTR));
         explanationButton->setText(QApplication::translate("MenuWindow", "Stock Explanation / Help", Q_NULLPTR));
         exitButton->setText(QApplication::translate("MenuWindow", "Exit", Q_NULLPTR));
+        greeting->setText(QString());
     } // retranslateUi
 
 };

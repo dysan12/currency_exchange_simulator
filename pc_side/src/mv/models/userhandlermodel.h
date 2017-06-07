@@ -17,7 +17,7 @@ public:
     UserHandlerModel();
     UserModel * verifyUser(QString login, QString password);
     bool registerUser(QString login, QString password, QString email, QString name);
-
+    bool changeUserData(UserModel *user);
 };
 
 #endif // USERHANDLERMODEL_H

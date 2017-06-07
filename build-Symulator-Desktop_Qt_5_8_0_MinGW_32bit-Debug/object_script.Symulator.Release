@@ -12,8 +12,11 @@ INPUT(
 ./release\addinvestmentwindow.o
 ./release\modifyinvestmentwindow.o
 ./release\usersettingswindow.o
+./release\explanationwindow.o
+./release\stockwindow.o
 ./release\model.o
 ./release\usermodel.o
+./release\userhandlermodel.o
 ./release\investmentsmodel.o
 ./release\moc_menuwindow.o
 ./release\moc_loginwindow.o
@@ -22,4 +25,6 @@ INPUT(
 ./release\moc_usersettingswindow.o
 ./release\moc_registerwindow.o
 ./release\moc_investmentswindow.o
+./release\moc_explanationwindow.o
+./release\moc_stockwindow.o
 );

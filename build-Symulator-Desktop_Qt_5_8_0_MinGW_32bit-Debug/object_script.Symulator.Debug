@@ -12,8 +12,11 @@ INPUT(
 ./debug\addinvestmentwindow.o
 ./debug\modifyinvestmentwindow.o
 ./debug\usersettingswindow.o
+./debug\explanationwindow.o
+./debug\stockwindow.o
 ./debug\model.o
 ./debug\usermodel.o
+./debug\userhandlermodel.o
 ./debug\investmentsmodel.o
 ./debug\moc_menuwindow.o
 ./debug\moc_loginwindow.o
@@ -22,4 +25,6 @@ INPUT(
 ./debug\moc_usersettingswindow.o
 ./debug\moc_registerwindow.o
 ./debug\moc_investmentswindow.o
+./debug\moc_explanationwindow.o
+./debug\moc_stockwindow.o
 );
