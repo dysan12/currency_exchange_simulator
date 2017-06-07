@@ -9,6 +9,10 @@ void ResponseHandler::handleRatesResponse(std::string rates, double convertedRat
     const char* json = rates.c_str();
     Document document;
     document.Parse(json);
+    if(document["response"]["data"]["pln"].IsString())
+        convertedRates[0]=atof(document["response"]["data"]["pln"].GetString())/
+                atof(document["response"]["data"]["usd"].GetString());
+    else{
 
     convertedRates[0]=atof(document["response"]["data"]["pln"].GetString())/
             atof(document["response"]["data"]["usd"].GetString());
@@ -30,4 +34,5 @@ void ResponseHandler::handleRatesResponse(std::string rates, double convertedRat
             atof(document["response"]["data"]["nok"].GetString());
     convertedRates[9]=atof(document["response"]["data"]["pln"].GetString())/
             atof(document["response"]["data"]["rub"].GetString());
+    }
 }

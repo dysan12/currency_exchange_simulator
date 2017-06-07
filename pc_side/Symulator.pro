@@ -99,4 +99,4 @@ FORMS += \
     src/mv/views/stockwindow.ui
 
 LIBS += \
-        -Llibs/curl/bin -lcurl
+        -L"currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
