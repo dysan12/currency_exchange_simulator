@@ -40,9 +40,12 @@ SOURCES += \
     src/mv/views/addinvestmentwindow.cpp \
     src/mv/views/modifyinvestmentwindow.cpp \
     src/mv/views/usersettingswindow.cpp \
+    src/mv/views/explanationwindow.cpp \
+    src/mv/views/stockwindow.cpp \
 #MODELS
     src/mv/models/model.cpp \
     src/mv/models/usermodel.cpp \
+    src/mv/models/userhandlermodel.cpp \
     src/mv/models/investmentsmodel.cpp
 
 HEADERS += \
@@ -54,6 +57,7 @@ HEADERS += \
     src/logger/warningslog.h \
     src/exceptions/exception.h \
     src/exceptions/datatoolongexception.h \
+    src/exceptions/invalidcredentialsexception.h \
 #VIEWS
     src/mv/views/menuwindow.h \
     src/mv/views/loginwindow.h \
@@ -62,8 +66,11 @@ HEADERS += \
     src/mv/views/usersettingswindow.h \
     src/mv/views/registerwindow.h \
     src/mv/views/investmentswindow.h \
+    src/mv/views/explanationwindow.h \
+    src/mv/views/stockwindow.h \
 #MODELS
     src/mv/models/model.h \
+    src/mv/models/userhandlermodel.h \
     src/mv/models/usermodel.h \
     src/mv/models/investmentsmodel.h
 
@@ -81,5 +88,7 @@ FORMS += \
     src/mv/views/investmentswindow.ui \
     src/mv/views/addinvestmentwindow.ui \
     src/mv/views/modifyinvestmentwindow.ui \
-    src/mv/views/usersettingswindow.ui
+    src/mv/views/usersettingswindow.ui \
+    src/mv/views/explanationwindow.ui \
+    src/mv/views/stockwindow.ui
 
