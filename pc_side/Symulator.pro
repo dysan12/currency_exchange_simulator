@@ -46,7 +46,9 @@ SOURCES += \
     src/mv/models/model.cpp \
     src/mv/models/usermodel.cpp \
     src/mv/models/userhandlermodel.cpp \
-    src/mv/models/investmentsmodel.cpp
+    src/mv/models/investmentsmodel.cpp \
+    src/connections/serverconnection.cpp \
+    src/mv/models/responsehandler.cpp
 
 HEADERS += \
         config.h \
@@ -72,13 +74,17 @@ HEADERS += \
     src/mv/models/model.h \
     src/mv/models/userhandlermodel.h \
     src/mv/models/usermodel.h \
-    src/mv/models/investmentsmodel.h
+    src/mv/models/investmentsmodel.h \
+    src/connections/serverconnection.h \
+    src/mv/models/responsehandler.h
 
 INCLUDEPATH += src\exceptions \
             src\logger \
             src\mv\models \
             src\mv\views \
-            src\mv\controllers
+            src\mv\controllers \
+            libs\curl\include \
+            libs\rapidjson\include
 
 
 FORMS += \
@@ -92,3 +98,5 @@ FORMS += \
     src/mv/views/explanationwindow.ui \
     src/mv/views/stockwindow.ui
 
+LIBS += \
+        -Llibs/curl/bin -lcurl
