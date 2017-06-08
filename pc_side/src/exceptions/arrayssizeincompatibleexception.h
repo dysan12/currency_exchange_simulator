@@ -1,8 +1,11 @@
-#ifndef ARRAYSSIZEINCOMPATIBLE_H
-#define ARRAYSSIZEINCOMPATIBLE_H
-class ArraySizeInCompatibleException : Exception
+#ifndef ARRAYSSIZEINCOMPATIBLEEXCEPTION_H
+#define ARRAYSSIZEINCOMPATIBLEEXCEPTION_H
+
+#include "exception.h"
+
+class ArraysSizeIncompatibleException : Exception
 {
 public:
-    Exception();
+    ArraysSizeIncompatibleException();
 };
-#endif // ARRAYSSIZEINCOMPATIBLE_H
+#endif // ARRAYSSIZEINCOMPATIBLEEXCEPTION_H

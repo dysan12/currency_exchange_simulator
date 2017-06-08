@@ -2,7 +2,7 @@
 
 InvestmentsModel::InvestmentsModel()
 {
-    this->initializeRates();
+    response = new ResponseHandler();
 }
 
 InvestmentsModel::InvestmentsModel(QString invName)
@@ -22,11 +22,20 @@ bool InvestmentsModel::addInvestment(){
     return true;
 }
 
-void InvestmentsModel::initializeRates(){
-    std::string url = "http://slawbit.pl/api-currencyexchange/rates/current";
-    response=new ResponseHandler();
-    servcon=new ServerConnection();
-    response->handleRatesResponse(servcon->callGetRequest(url),this->convertedRates);
+std::vector <Investment*> InvestmentsModel::getInvestments(std::string userLogin)
+{
+    std::vector <std::string> keys = {"tokenID", "user"},
+            values = {"123" /*token->getID()*/,userLogin};
+
+    std::string serverResponse = servcon->callRequest("investments", "GET", keys, values);
+
+    return response->processUserInvestments(serverResponse);
+}
+
+void InvestmentsModel::getRates(){
+    std::vector <std::string> keys = {},
+            values = {};
+    response->handleRatesResponse(servcon->callRequest("rates/current", "GET", keys, values),this->convertedRates);
 }
 
 double InvestmentsModel::getConvertedRate(int index){

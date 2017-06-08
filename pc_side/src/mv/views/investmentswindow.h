@@ -1,8 +1,11 @@
 #ifndef INVESTMENTSWINDOW_H
 #define INVESTMENTSWINDOW_H
-#include "investmentsmodel.h"
 
 #include <QDialog>
+
+#include "usermodel.h"
+#include "investmentsmodel.h"
+#include "investment.h"
 
 namespace Ui {
 class InvestmentsWindow;
@@ -12,8 +15,11 @@ class InvestmentsWindow : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::InvestmentsWindow *ui;
+    UserModel *user;
 public:
-    explicit InvestmentsWindow(QWidget *parent = 0);
+    explicit InvestmentsWindow(QWidget *parent, UserModel *user);
     ~InvestmentsWindow();
 
 private slots:
@@ -25,8 +31,7 @@ private slots:
 
     void on_modifyButton_clicked();
 
-private:
-    Ui::InvestmentsWindow *ui;
+
 };
 
 #endif // INVESTMENTSWINDOW_H

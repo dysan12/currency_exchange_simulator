@@ -27,7 +27,7 @@ void MenuWindow::on_stockStatusButton_clicked()
 
 void MenuWindow::on_investmentsButton_clicked()
 {
-    InvestmentsWindow *investmentsView = new InvestmentsWindow();
+    InvestmentsWindow *investmentsView = new InvestmentsWindow(0, );
     this->hide();
     investmentsView->exec();
     this->show();

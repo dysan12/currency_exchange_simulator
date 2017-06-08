@@ -4,25 +4,31 @@
 #include "addinvestmentwindow.h"
 #include "modifyinvestmentwindow.h"
 
-InvestmentsWindow::InvestmentsWindow(QWidget *parent) :
+InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
     QDialog(parent),
-    ui(new Ui::InvestmentsWindow)
+    ui(new Ui::InvestmentsWindow),
+    user(user)
 {
     ui->setupUi(this);
 
-    InvestmentsModel *mod=new InvestmentsModel();
-    ui->usdLabel->setText("USD("+QString::number(mod->getConvertedRate(0)) +")");
-    ui->eurLabel->setText("Euro("+QString::number(mod->getConvertedRate(1)) +")");
-    ui->jpyLabel->setText("Yen("+QString::number(mod->getConvertedRate(2)) +")");
-    ui->gbpLabel->setText("Pound("+QString::number(mod->getConvertedRate(3)) +")");
-    ui->czkLabel->setText("Czech koruna("+QString::number(mod->getConvertedRate(4)) +")");
-    ui->audLabel->setText("Australian dolar("+QString::number(mod->getConvertedRate(5)) +")");
-    ui->brlLabel->setText("Brazilian real("+QString::number(mod->getConvertedRate(6)) +")");
-    ui->dkkLabel->setText("Danish krone("+QString::number(mod->getConvertedRate(7)) +")");
-    ui->nokLabel->setText("Norwegian krone("+QString::number(mod->getConvertedRate(8)) +")");
-    ui->rubLabel->setText("Russian ruble("+QString::number(mod->getConvertedRate(9)) +")");
+    InvestmentsModel *model = new InvestmentsModel();
+    model->getRates();
+    std::vector <Investment*> investments = model->getInvestments("dysan12" /*user->getLogin()*/);
+    Investment *inv = investments[0];
+    inv;
 
-    int invNo, invAmnt=mod->investmentsAmount();
+    ui->usdLabel->setText("USD("+QString::number(model->getConvertedRate(0)) +")");
+    ui->eurLabel->setText("Euro("+QString::number(model->getConvertedRate(1)) +")");
+    ui->jpyLabel->setText("Yen("+QString::number(model->getConvertedRate(2)) +")");
+    ui->gbpLabel->setText("Pound("+QString::number(model->getConvertedRate(3)) +")");
+    ui->czkLabel->setText("Czech koruna("+QString::number(model->getConvertedRate(4)) +")");
+    ui->audLabel->setText("Australian dolar("+QString::number(model->getConvertedRate(5)) +")");
+    ui->brlLabel->setText("Brazilian real("+QString::number(model->getConvertedRate(6)) +")");
+    ui->dkkLabel->setText("Danish krone("+QString::number(model->getConvertedRate(7)) +")");
+    ui->nokLabel->setText("Norwegian krone("+QString::number(model->getConvertedRate(8)) +")");
+    ui->rubLabel->setText("Russian ruble("+QString::number(model->getConvertedRate(9)) +")");
+
+    int invNo, invAmnt = model->investmentsAmount();
 
     for(invNo=0;invNo<invAmnt;invNo++){//
         ui->invesmentsList->addItem("Investment no " + QString::number(invNo+1));

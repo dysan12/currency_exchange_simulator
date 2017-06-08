@@ -35,3 +35,18 @@ void ResponseHandler::handleRatesResponse(std::string rates, double convertedRat
     currency = atof(document["response"]["data"]["rub"].GetString());
     convertedRates[9]=pln/currency;
 }
+
+std::vector <Investment*> ResponseHandler::processUserInvestments(std::string jsonResponse)
+{
+    Document document;
+    document.Parse(jsonResponse.c_str());
+
+    std::vector <Investment*> investments;
+
+    for (SizeType i = 0; i < document["response"]["data"].Size(); i++) {
+        std::string name = document["response"]["data"][i]["name"].GetString();
+        investments.push_back(new Investment(name));
+    }
+
+    return investments;
+}
