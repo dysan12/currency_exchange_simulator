@@ -32,6 +32,14 @@ SOURCES += \
     src/logger/errorslog.cpp \
     src/logger/warningslog.cpp \
     src/exceptions/exception.cpp \
+    src/exceptions/datatoolongexception.cpp \
+    src/exceptions/invalidcredentialsexception.cpp \
+    src/exceptions/arrayssizeincompatibleexception.cpp \
+    src/exceptions/nothandledmethodexception.cpp \
+    src/exceptions/serverconnectionbrokenexception.cpp \
+    src/exceptions/badrequestexception.cpp \
+    src/exceptions/accessdeniedexception.cpp \
+    src/exceptions/internalservererrorexception.cpp \
 #VIEWS
     src/mv/views/menuwindow.cpp \
     src/mv/views/loginwindow.cpp \
@@ -60,6 +68,12 @@ HEADERS += \
     src/exceptions/exception.h \
     src/exceptions/datatoolongexception.h \
     src/exceptions/invalidcredentialsexception.h \
+    src/exceptions/arrayssizeincompatibleexception.h \
+    src/exceptions/nothandledmethodexception.h \
+    src/exceptions/serverconnectionbrokenexception.h \
+    src/exceptions/badrequestexception.h \
+    src/exceptions/accessdeniedexception.h \
+    src/exceptions/internalservererrorexception.h \
 #VIEWS
     src/mv/views/menuwindow.h \
     src/mv/views/loginwindow.h \
@@ -99,4 +113,4 @@ FORMS += \
     src/mv/views/stockwindow.ui
 
 LIBS += \
-        -L"E:\Qt\Projects\Master\currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
+        -L"C:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
