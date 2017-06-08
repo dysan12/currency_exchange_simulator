@@ -32,6 +32,7 @@ private slots:
 
     void on_modifyButton_clicked();
 
+    void on_invesmentsList_currentIndexChanged(int index);
 };
 
 #endif // INVESTMENTSWINDOW_H

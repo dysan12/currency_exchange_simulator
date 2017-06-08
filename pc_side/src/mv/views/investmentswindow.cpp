@@ -16,11 +16,11 @@ InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
     /* std::vector <Investment*> investments; znajduje sie w klasie investmentswindow.h */
     this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
     Investment *inv;
-    for(int index=0;index<investments.size();index++){
+    for(int index = 0; index < investments.size(); index++){
         *inv=investments[index];
         ui->invesmentsList->addItem(inv->name);
     }
-    inv=investments[0];
+    inv = investments[0];
     ui->usdAmount->setText(inv->getUsd());
     ui->eurAmount->setText(inv->getEur());
     ui->jpyAmount->setText(inv->getJpy());
@@ -81,18 +81,14 @@ void InvestmentsWindow::on_addButton_clicked()
 
 void InvestmentsWindow::on_modifyButton_clicked()
 {
-    ModifyInvestmentWindow *modifyInv=new ModifyInvestmentWindow(this->investments);
+    Investment *inv = investments[ui->invesmentsList->currentIndex()];
+    ModifyInvestmentWindow *modifyInv = new ModifyInvestmentWindow(0, inv);
     modifyInv->exec();
-
-    invAmnt=invMod->investmentsAmount();
-    for(invNo=0;invNo<invAmnt;invNo++){
-        ui->invesmentsList->addItem("Investment no " + QString::number(invNo+1));
-    }//
 }
 
 void InvestmentsWindow::on_invesmentsList_currentIndexChanged(int index)//zmiana investycji w oknie
 {
-    Investment *inv=investments[index];
+    Investment *inv = investments[index];
     ui->usdAmount->setText(inv->getUsd());
     ui->eurAmount->setText(inv->getEur());
     ui->jpyAmount->setText(inv->getJpy());

@@ -75,7 +75,7 @@
     <string>Back</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
+  <widget class="QLineEdit" name="brlField">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -111,7 +111,7 @@
     <string>USD</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="usdField">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -160,7 +160,7 @@
     <string>Yen</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_10">
+  <widget class="QLineEdit" name="nokField">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -170,7 +170,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
+  <widget class="QLineEdit" name="dkkField">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -180,7 +180,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="czkField">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -216,7 +216,7 @@
     <string>Australian dolar</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="audField">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -239,7 +239,7 @@
     <string>Amount</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="gbpField">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -249,7 +249,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_9">
+  <widget class="QLineEdit" name="rubField">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -259,7 +259,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="jpyField">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -269,7 +269,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="eurField">
    <property name="geometry">
     <rect>
      <x>200</x>
