@@ -16,6 +16,7 @@ public:
 
     void handleRatesResponse(std::string rates, double convertedRates[10]);
     std::vector <Investment*> processUserInvestments(std::string jsonResponse);
+    double currencyStringToDouble(Document document, std::string currency);
 
 };
 

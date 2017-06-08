@@ -13,9 +13,25 @@ InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
 
     InvestmentsModel *model = new InvestmentsModel();
     model->getRates();
-    std::vector <Investment*> investments = model->getInvestments("dysan12" /*user->getLogin()*/);
-    Investment *inv = investments[0];
-    inv;
+    /* std::vector <Investment*> investments; znajduje sie w klasie investmentswindow.h */
+    this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
+    Investment *inv;
+    for(int index=0;index<investments.size();index++){
+        *inv=investments[index];
+        ui->invesmentsList->addItem(inv->name);
+    }
+    inv=investments[0];
+    ui->usdAmount->setText(inv->getUsd());
+    ui->eurAmount->setText(inv->getEur());
+    ui->jpyAmount->setText(inv->getJpy());
+    ui->gbpAmount->setText(inv->getGbp());
+    ui->czkAmount->setText(inv->getCzk());
+    ui->audAmount->setText(inv->getAud());
+    ui->brlAmount->setText(inv->getBrl());
+    ui->dkkAmount->setText(inv->getDkk());
+    ui->nokAmount->setText(inv->getNok());
+    ui->rubAmount->setText(inv->getRub());
+    ui->plnAmount->setText(inv->getPln());
 
     ui->usdLabel->setText("USD("+QString::number(model->getConvertedRate(0)) +")");
     ui->eurLabel->setText("Euro("+QString::number(model->getConvertedRate(1)) +")");
@@ -27,12 +43,6 @@ InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
     ui->dkkLabel->setText("Danish krone("+QString::number(model->getConvertedRate(7)) +")");
     ui->nokLabel->setText("Norwegian krone("+QString::number(model->getConvertedRate(8)) +")");
     ui->rubLabel->setText("Russian ruble("+QString::number(model->getConvertedRate(9)) +")");
-
-    int invNo, invAmnt = model->investmentsAmount();
-
-    for(invNo=0;invNo<invAmnt;invNo++){//
-        ui->invesmentsList->addItem("Investment no " + QString::number(invNo+1));
-    }//
 }
 
 InvestmentsWindow::~InvestmentsWindow()
@@ -47,8 +57,8 @@ void InvestmentsWindow::on_backButton_clicked()
 
 void InvestmentsWindow::on_deleteButton_clicked()
 {
-    InvestmentsModel *invMod=new InvestmentsModel();
-    int i=invMod->deleteInvestment();
+    InvestmentsModel *model=new InvestmentsModel();
+    int i=model->deleteInvestment();
     ui->invesmentsList->removeItem(i);
 }
 
@@ -71,17 +81,27 @@ void InvestmentsWindow::on_addButton_clicked()
 
 void InvestmentsWindow::on_modifyButton_clicked()
 {
-    InvestmentsModel *invMod=new InvestmentsModel(ui->invesmentsList->currentText());
-    int invNo, invAmnt=invMod->investmentsAmount();
-    for(invNo=0;invNo!=invAmnt;invAmnt--){//
-        ui->invesmentsList->removeItem(0);
-    }
-
-    ModifyInvestmentWindow *modifyInv=new ModifyInvestmentWindow();
+    ModifyInvestmentWindow *modifyInv=new ModifyInvestmentWindow(this->investments);
     modifyInv->exec();
 
     invAmnt=invMod->investmentsAmount();
     for(invNo=0;invNo<invAmnt;invNo++){
         ui->invesmentsList->addItem("Investment no " + QString::number(invNo+1));
     }//
+}
+
+void InvestmentsWindow::on_invesmentsList_currentIndexChanged(int index)//zmiana investycji w oknie
+{
+    Investment *inv=investments[index];
+    ui->usdAmount->setText(inv->getUsd());
+    ui->eurAmount->setText(inv->getEur());
+    ui->jpyAmount->setText(inv->getJpy());
+    ui->gbpAmount->setText(inv->getGbp());
+    ui->czkAmount->setText(inv->getCzk());
+    ui->audAmount->setText(inv->getAud());
+    ui->brlAmount->setText(inv->getBrl());
+    ui->dkkAmount->setText(inv->getDkk());
+    ui->nokAmount->setText(inv->getNok());
+    ui->rubAmount->setText(inv->getRub());
+    ui->plnAmount->setText(inv->getPln());
 }

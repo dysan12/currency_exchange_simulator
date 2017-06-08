@@ -18,6 +18,7 @@ class InvestmentsWindow : public QDialog
 private:
     Ui::InvestmentsWindow *ui;
     UserModel *user;
+    std::vector <Investment*> investments;
 public:
     explicit InvestmentsWindow(QWidget *parent, UserModel *user);
     ~InvestmentsWindow();
@@ -30,7 +31,6 @@ private slots:
     void on_addButton_clicked();
 
     void on_modifyButton_clicked();
-
 
 };
 

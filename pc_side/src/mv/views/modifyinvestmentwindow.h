@@ -1,5 +1,7 @@
 #ifndef MODIFYINVESTMENTWINDOW_H
 #define MODIFYINVESTMENTWINDOW_H
+#include "investment.h"
+#include "investmentsmodel.h"
 
 #include <QDialog>
 
@@ -12,7 +14,7 @@ class ModifyInvestmentWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ModifyInvestmentWindow(QWidget *parent = 0);
+    explicit ModifyInvestmentWindow(QWidget *parent, Investment *inv);
     ~ModifyInvestmentWindow();
 
 private slots:
