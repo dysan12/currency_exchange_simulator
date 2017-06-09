@@ -6,7 +6,7 @@ Token::Token(std::string id) : id(id)
 }
 std::string Token::getId()
 {
-    return this->getId();
+    return this->id;
 }
 
 void Token::setId(std::string id)

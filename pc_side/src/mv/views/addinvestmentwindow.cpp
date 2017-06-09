@@ -1,10 +1,10 @@
 #include "addinvestmentwindow.h"
 #include "ui_addinvestmentwindow.h"
 
-AddInvestmentWindow::AddInvestmentWindow(QWidget *parent, UserModel *user) :
+AddInvestmentWindow::AddInvestmentWindow(QWidget *parent, InvestmentsModel *invMod) :
     QDialog(parent),
     ui(new Ui::AddInvestmentWindow),
-    user(user)
+    invMod(invMod)
 {
     ui->setupUi(this);
     ui->currentAmount->setText("100000");
@@ -17,9 +17,8 @@ AddInvestmentWindow::~AddInvestmentWindow()
 
 void AddInvestmentWindow::on_addButton_clicked()
 {
-    InvestmentsModel *model = new InvestmentsModel();
     std::string name= ui->nameField->text().toStdString();
-    model->addInvestment(user, name);
+    invMod->addInvestment(name);
     this->close();
 }
 

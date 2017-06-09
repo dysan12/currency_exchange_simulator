@@ -14,7 +14,7 @@ class ModifyInvestmentWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ModifyInvestmentWindow(QWidget *parent, Investment *inv);
+    explicit ModifyInvestmentWindow(QWidget *parent, Investment *inv, InvestmentsModel *invModel);
     ~ModifyInvestmentWindow();
 
 private slots:
@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::ModifyInvestmentWindow *ui;
     Investment *inv;
+    InvestmentsModel *invModel;
 };
 
 #endif // MODIFYINVESTMENTWINDOW_H

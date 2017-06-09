@@ -41,6 +41,7 @@ SOURCES += \
     src/exceptions/badrequestexception.cpp \
     src/exceptions/accessdeniedexception.cpp \
     src/exceptions/internalservererrorexception.cpp \
+    src/exceptions/valuesoccupiedexception.cpp \
 #VIEWS
     src/mv/views/menuwindow.cpp \
     src/mv/views/loginwindow.cpp \
@@ -58,6 +59,7 @@ SOURCES += \
     src/mv/models/userhandlermodel.cpp \
     src/mv/models/investmentsmodel.cpp \
     src/mv/models/investment.cpp \
+    src/mv/models/token.cpp \
     src/mv/models/responsehandler.cpp
 
 HEADERS += \
@@ -77,6 +79,7 @@ HEADERS += \
     src/exceptions/badrequestexception.h \
     src/exceptions/accessdeniedexception.h \
     src/exceptions/internalservererrorexception.h \
+    src/exceptions/valuesoccupiedexception.h \
 #VIEWS
     src/mv/views/menuwindow.h \
     src/mv/views/loginwindow.h \
@@ -94,6 +97,7 @@ HEADERS += \
     src/mv/models/usermodel.h \
     src/mv/models/investmentsmodel.h \
     src/mv/models/investment.h \
+    src/mv/models/token.h \
     src/mv/models/responsehandler.h
 
 INCLUDEPATH += src\exceptions \
@@ -118,4 +122,4 @@ FORMS += \
     src/mv/views/stockwindow.ui
 
 LIBS += \
-        -L"E:/Qt/Projects/Master/currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
+        -L"C:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl

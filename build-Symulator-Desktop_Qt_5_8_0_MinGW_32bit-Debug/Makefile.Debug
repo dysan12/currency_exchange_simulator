@@ -569,10 +569,31 @@ debug/moc_loginwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/Q
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
 	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\loginwindow.h -o debug\moc_loginwindow.cpp
 
-debug/moc_addinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
+debug/moc_addinvestmentwindow.cpp: ../pc_side/src/mv/models/investment.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -595,21 +616,44 @@ debug/moc_addinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/i
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -676,10 +720,31 @@ debug/moc_addinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/i
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
 	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\addinvestmentwindow.h -o debug\moc_addinvestmentwindow.cpp
 
-debug/moc_modifyinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
+debug/moc_modifyinvestmentwindow.cpp: ../pc_side/src/mv/models/investment.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -702,21 +767,44 @@ debug/moc_modifyinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_3
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -2089,50 +2177,7 @@ debug/menuwindow.o: ../pc_side/src/mv/views/menuwindow.cpp ../pc_side/src/mv/vie
 		../pc_side/src/mv/models/investment.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		../pc_side/src/mv/views/explanationwindow.h \
-		ui_menuwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMenuBar \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmenubar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmenu.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QStatusBar \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstatusbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QToolBar \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtoolbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget
+		ui_menuwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\menuwindow.o ..\pc_side\src\mv\views\menuwindow.cpp
 
 debug/loginwindow.o: ../pc_side/src/mv/views/loginwindow.cpp ../pc_side/src/mv/views/loginwindow.h \
@@ -2297,48 +2342,7 @@ debug/loginwindow.o: ../pc_side/src/mv/views/loginwindow.cpp ../pc_side/src/mv/v
 		../pc_side/src/mv/models/investmentsmodel.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		../pc_side/src/mv/views/explanationwindow.h \
-		ui_loginwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_loginwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\loginwindow.o ..\pc_side\src\mv\views\loginwindow.cpp
 
 debug/registerwindow.o: ../pc_side/src/mv/views/registerwindow.cpp ../pc_side/src/mv/views/registerwindow.h \
@@ -2493,49 +2497,6 @@ debug/registerwindow.o: ../pc_side/src/mv/views/registerwindow.cpp ../pc_side/sr
 		../pc_side/src/exceptions/invalidcredentialsexception.h \
 		../pc_side/src/exceptions/datatoolongexception.h \
 		ui_registerwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../pc_side/src/exceptions/ValuesOccupiedException.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\registerwindow.o ..\pc_side\src\mv\views\registerwindow.cpp
 
@@ -2687,54 +2648,36 @@ debug/investmentswindow.o: ../pc_side/src/mv/views/investmentswindow.cpp ../pc_s
 		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
 		../pc_side/src/mv/models/investment.h \
 		ui_investmentswindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QComboBox \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qcombobox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../pc_side/src/mv/views/addinvestmentwindow.h \
 		../pc_side/src/mv/views/modifyinvestmentwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\investmentswindow.o ..\pc_side\src\mv\views\investmentswindow.cpp
 
 debug/addinvestmentwindow.o: ../pc_side/src/mv/views/addinvestmentwindow.cpp ../pc_side/src/mv/views/addinvestmentwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -2757,21 +2700,44 @@ debug/addinvestmentwindow.o: ../pc_side/src/mv/views/addinvestmentwindow.cpp ../
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -2833,57 +2799,35 @@ debug/addinvestmentwindow.o: ../pc_side/src/mv/views/addinvestmentwindow.cpp ../
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_addinvestmentwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_addinvestmentwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\addinvestmentwindow.o ..\pc_side\src\mv\views\addinvestmentwindow.cpp
 
 debug/modifyinvestmentwindow.o: ../pc_side/src/mv/views/modifyinvestmentwindow.cpp ../pc_side/src/mv/views/modifyinvestmentwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -2906,21 +2850,44 @@ debug/modifyinvestmentwindow.o: ../pc_side/src/mv/views/modifyinvestmentwindow.c
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -2982,50 +2949,7 @@ debug/modifyinvestmentwindow.o: ../pc_side/src/mv/views/modifyinvestmentwindow.c
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_modifyinvestmentwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_modifyinvestmentwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\modifyinvestmentwindow.o ..\pc_side\src\mv\views\modifyinvestmentwindow.cpp
 
 debug/usersettingswindow.o: ../pc_side/src/mv/views/usersettingswindow.cpp ../pc_side/src/mv/views/usersettingswindow.h \
@@ -3137,50 +3061,7 @@ debug/usersettingswindow.o: ../pc_side/src/mv/views/usersettingswindow.cpp ../pc
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
 		../pc_side/src/mv/models/token.h \
 		../pc_side/src/mv/models/model.h \
-		ui_usersettingswindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_usersettingswindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\usersettingswindow.o ..\pc_side\src\mv\views\usersettingswindow.cpp
 
 debug/explanationwindow.o: ../pc_side/src/mv/views/explanationwindow.cpp ../pc_side/src/mv/views/explanationwindow.h \
@@ -3286,50 +3167,7 @@ debug/explanationwindow.o: ../pc_side/src/mv/views/explanationwindow.cpp ../pc_s
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_explanationwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_explanationwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\explanationwindow.o ..\pc_side\src\mv\views\explanationwindow.cpp
 
 debug/stockwindow.o: ../pc_side/src/mv/views/stockwindow.cpp ../pc_side/src/mv/views/stockwindow.h \
@@ -3435,50 +3273,7 @@ debug/stockwindow.o: ../pc_side/src/mv/views/stockwindow.cpp ../pc_side/src/mv/v
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_stockwindow.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
+		ui_stockwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\stockwindow.o ..\pc_side\src\mv\views\stockwindow.cpp
 
 debug/model.o: ../pc_side/src/mv/models/model.cpp ../pc_side/src/mv/models/model.h

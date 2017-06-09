@@ -1,38 +1,37 @@
 #include "investmentsmodel.h"
 
-InvestmentsModel::InvestmentsModel()
+InvestmentsModel::InvestmentsModel(UserModel *user)
 {
     response = new ResponseHandler();
-}
-
-InvestmentsModel::InvestmentsModel(QString invName)
-{
-    this->invName=invName;//do modyfikacji kontretnej inwestycji
+    this->user = user;
 }
 
 int InvestmentsModel::investmentsAmount(){
    return 4;
 }
 
-void InvestmentsModel::deleteInvestment(UserModel *user, std::string name){
+void InvestmentsModel::deleteInvestment(std::string name){
+    Token *token = user->getToken();
     std::string resource = ("investments/" + user->getLogin() + "&" + name);
     std::vector <std::string> keys = {"tokenID"},
-            values = {"123"};
+            values = {token->getId()};
 
     servcon->callRequest(resource, "DELETE", keys, values);
 }
 
-void InvestmentsModel::addInvestment(UserModel *user, std::string name){
+void InvestmentsModel::addInvestment(std::string name){
+    Token *token = user->getToken();
     std::vector <std::string> keys = {"user", "tokenID", "name"},
-            values={user->getLogin(), "123", name};
+            values={user->getLogin(), token->getId(), name};
 
     servcon->callRequest("investments", "POST", keys, values);
 }
 
-std::vector <Investment*> InvestmentsModel::getInvestments(std::string userLogin)
+std::vector <Investment*> InvestmentsModel::getInvestments()
 {
+    Token *token = user->getToken();
     std::vector <std::string> keys = {"tokenID", "user"},
-            values = {"123" /*token->getID()*/,userLogin};
+            values = {token->getId(), user->getLogin()};
 
     std::string serverResponse = servcon->callRequest("investments", "GET", keys, values);
 
@@ -50,11 +49,12 @@ double InvestmentsModel::getConvertedRate(int index){
 }
 
 void InvestmentsModel::modifyInvestment(Investment *inv){
+    Token *token = user->getToken();
     std::vector <std::string> keys = {"user", "tokenID", "name", "AUD", "BGN", "BRL",
         "CAD", "CHF", "CNY", "CZK", "DKK", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS",
         "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "RON", "RUB", "SEK",
         "SGD", "THB", "TRY", "USD", "ZAR", "PLN", "EUR"},
-            values = {inv->getUserLogin(), "123", inv->getName(), std::to_string(inv->getAud()),
+            values = {inv->getUserLogin(), token->getId(), inv->getName(), std::to_string(inv->getAud()),
                       "0",std::to_string(inv->getBrl()), "0", "0", "0",
                       std::to_string(inv->getCzk()), std::to_string(inv->getDkk()),
                       std::to_string(inv->getGbp()), "0", "0", "0", "0", "0", "0",

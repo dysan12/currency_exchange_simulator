@@ -1,10 +1,11 @@
 #include "modifyinvestmentwindow.h"
 #include "ui_modifyinvestmentwindow.h"
 
-ModifyInvestmentWindow::ModifyInvestmentWindow(QWidget *parent, Investment *inv) :
+ModifyInvestmentWindow::ModifyInvestmentWindow(QWidget *parent, Investment *inv, InvestmentsModel *invModel) :
     QDialog(parent),
     ui(new Ui::ModifyInvestmentWindow)
 {
+    this->invModel = invModel;
     this->inv=inv;
     ui->setupUi(this);
     ui->nameField->setText(QString::fromStdString(inv->getName()));
@@ -20,19 +21,18 @@ ModifyInvestmentWindow::ModifyInvestmentWindow(QWidget *parent, Investment *inv)
     ui->rubField->setText(QString::number(inv->getRub()));
     ui->currentAmount->setText(QString::number(inv->getPln()));
 
-    InvestmentsModel *model = new InvestmentsModel();
-    model->getRates();
+    invModel->getRates();
 
-    ui->usdLabel->setText("USD("+QString::number(model->getConvertedRate(0)) +")");
-    ui->eurLabel->setText("Euro("+QString::number(model->getConvertedRate(1)) +")");
-    ui->jpyLabel->setText("Yen("+QString::number(model->getConvertedRate(2)) +")");
-    ui->gbpLabel->setText("Pound("+QString::number(model->getConvertedRate(3)) +")");
-    ui->czkLabel->setText("Czech koruna("+QString::number(model->getConvertedRate(4)) +")");
-    ui->audLabel->setText("Australian dolar("+QString::number(model->getConvertedRate(5)) +")");
-    ui->brlLabel->setText("Brazilian real("+QString::number(model->getConvertedRate(6)) +")");
-    ui->dkkLabel->setText("Danish krone("+QString::number(model->getConvertedRate(7)) +")");
-    ui->nokLabel->setText("Norwegian krone("+QString::number(model->getConvertedRate(8)) +")");
-    ui->rubLabel->setText("Russian ruble("+QString::number(model->getConvertedRate(9)) +")");
+    ui->usdLabel->setText("USD("+QString::number(invModel->getConvertedRate(0)) +")");
+    ui->eurLabel->setText("Euro("+QString::number(invModel->getConvertedRate(1)) +")");
+    ui->jpyLabel->setText("Yen("+QString::number(invModel->getConvertedRate(2)) +")");
+    ui->gbpLabel->setText("Pound("+QString::number(invModel->getConvertedRate(3)) +")");
+    ui->czkLabel->setText("Czech koruna("+QString::number(invModel->getConvertedRate(4)) +")");
+    ui->audLabel->setText("Australian dolar("+QString::number(invModel->getConvertedRate(5)) +")");
+    ui->brlLabel->setText("Brazilian real("+QString::number(invModel->getConvertedRate(6)) +")");
+    ui->dkkLabel->setText("Danish krone("+QString::number(invModel->getConvertedRate(7)) +")");
+    ui->nokLabel->setText("Norwegian krone("+QString::number(invModel->getConvertedRate(8)) +")");
+    ui->rubLabel->setText("Russian ruble("+QString::number(invModel->getConvertedRate(9)) +")");
 }
 
 ModifyInvestmentWindow::~ModifyInvestmentWindow()
@@ -47,7 +47,6 @@ void ModifyInvestmentWindow::on_backButton_clicked()
 
 void ModifyInvestmentWindow::on_modifyButton_clicked()
 {
-    InvestmentsModel *model = new InvestmentsModel();
     inv->setUsd(std::stod(ui->usdField->text().toStdString()));
     inv->setEur(std::stod(ui->eurField->text().toStdString()));
     inv->setJpy(std::stod(ui->jpyField->text().toStdString()));
@@ -58,6 +57,6 @@ void ModifyInvestmentWindow::on_modifyButton_clicked()
     inv->setDkk(std::stod(ui->dkkField->text().toStdString()));
     inv->setNok(std::stod(ui->nokField->text().toStdString()));
     inv->setRub(std::stod(ui->rubField->text().toStdString()));
-    model->modifyInvestment(this->inv);
+    invModel->modifyInvestment(this->inv);
     this->close();
 }

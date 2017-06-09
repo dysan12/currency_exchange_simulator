@@ -13,17 +13,17 @@ class InvestmentsModel : public ModelConnection
 {
     ServerConnection *servcon;
     ResponseHandler *response;
+    UserModel *user;
     QString invName;
     double convertedRates[10];
     double usersWealth[11];
 public:
-    InvestmentsModel();
-    InvestmentsModel(QString invName);
-    std::vector <Investment*> getInvestments(std::string userLogin);
+    InvestmentsModel(UserModel *user);
+    std::vector <Investment*> getInvestments();
 
     int investmentsAmount();
-    void deleteInvestment(UserModel *user, std::string name);
-    void addInvestment(UserModel *user, std::string name);
+    void deleteInvestment(std::string name);
+    void addInvestment(std::string name);
     void getRates();
     double getConvertedRate(int index);
     void modifyInvestment(Investment *inv);

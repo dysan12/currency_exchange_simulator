@@ -1,13 +1,5 @@
 #include "investment.h"
 
-<<<<<<< HEAD
-Investment::Investment(std::string name) : name(name)
-{
-
-}
-
-=======
-
 Investment::Investment(std::string user_login, std::string found_date,
                          std::string name, double pln, double usd, double eur,
                          double jpy, double gbp, double czk, double aud, double brl,
@@ -129,4 +121,3 @@ double Investment::getNok(){
 double Investment::getRub(){
     return rub;
 }
->>>>>>> 2e48aaf8a4847b0ccc8f8564b37e71d63e4c5514

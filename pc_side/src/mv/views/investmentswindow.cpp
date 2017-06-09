@@ -11,10 +11,10 @@ InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
 {
     ui->setupUi(this);
 
-    InvestmentsModel *model = new InvestmentsModel();
-    model->getRates();
+    invModel = new InvestmentsModel(user);
+    invModel->getRates();
     /* std::vector <Investment*> investments; znajduje sie w klasie investmentswindow.h */
-    this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
+    this->investments = invModel->getInvestments();
     Investment *inv;
     for(int index = 0; index < investments.size(); index++){
         inv = investments[index];
@@ -33,16 +33,16 @@ InvestmentsWindow::InvestmentsWindow(QWidget *parent, UserModel *user) :
     ui->rubAmount->setText(QString::number(inv->getRub()));
     ui->plnAmount->setText(QString::number(inv->getPln()));
 
-    ui->usdLabel->setText("USD("+QString::number(model->getConvertedRate(0)) +")");
-    ui->eurLabel->setText("Euro("+QString::number(model->getConvertedRate(1)) +")");
-    ui->jpyLabel->setText("Yen("+QString::number(model->getConvertedRate(2)) +")");
-    ui->gbpLabel->setText("Pound("+QString::number(model->getConvertedRate(3)) +")");
-    ui->czkLabel->setText("Czech koruna("+QString::number(model->getConvertedRate(4)) +")");
-    ui->audLabel->setText("Australian dolar("+QString::number(model->getConvertedRate(5)) +")");
-    ui->brlLabel->setText("Brazilian real("+QString::number(model->getConvertedRate(6)) +")");
-    ui->dkkLabel->setText("Danish krone("+QString::number(model->getConvertedRate(7)) +")");
-    ui->nokLabel->setText("Norwegian krone("+QString::number(model->getConvertedRate(8)) +")");
-    ui->rubLabel->setText("Russian ruble("+QString::number(model->getConvertedRate(9)) +")");
+    ui->usdLabel->setText("USD("+QString::number(invModel->getConvertedRate(0)) +")");
+    ui->eurLabel->setText("Euro("+QString::number(invModel->getConvertedRate(1)) +")");
+    ui->jpyLabel->setText("Yen("+QString::number(invModel->getConvertedRate(2)) +")");
+    ui->gbpLabel->setText("Pound("+QString::number(invModel->getConvertedRate(3)) +")");
+    ui->czkLabel->setText("Czech koruna("+QString::number(invModel->getConvertedRate(4)) +")");
+    ui->audLabel->setText("Australian dolar("+QString::number(invModel->getConvertedRate(5)) +")");
+    ui->brlLabel->setText("Brazilian real("+QString::number(invModel->getConvertedRate(6)) +")");
+    ui->dkkLabel->setText("Danish krone("+QString::number(invModel->getConvertedRate(7)) +")");
+    ui->nokLabel->setText("Norwegian krone("+QString::number(invModel->getConvertedRate(8)) +")");
+    ui->rubLabel->setText("Russian ruble("+QString::number(invModel->getConvertedRate(9)) +")");
 }
 
 InvestmentsWindow::~InvestmentsWindow()
@@ -57,15 +57,19 @@ void InvestmentsWindow::on_backButton_clicked()
 
 void InvestmentsWindow::on_deleteButton_clicked()
 {
-    InvestmentsModel *model=new InvestmentsModel();
-    model->deleteInvestment(user, ui->invesmentsList->currentText().toStdString());
-
-    this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
-    for(int index = 0;index < investments.size();index++)
+    this->investments = invModel->getInvestments();
+    std::string nameToDelete = ui->invesmentsList->currentText().toStdString();
+    int i = 0;
+    for(int index = 0;i < investments.size(); i++){
         ui->invesmentsList->removeItem(index);
+    }
+
+    invModel->deleteInvestment(nameToDelete);
+
+    this->investments = invModel->getInvestments();
 
     Investment *inv;
-    for(int index = 0; index < investments.size(); index++){
+    for(unsigned int index = 0; index < investments.size(); index++){
         inv = investments[index];
         ui->invesmentsList->addItem(QString::fromStdString(inv->getName()));
     }
@@ -73,16 +77,20 @@ void InvestmentsWindow::on_deleteButton_clicked()
 
 void InvestmentsWindow::on_addButton_clicked()
 {
-    AddInvestmentWindow *addNewInv = new AddInvestmentWindow(0, user);
+    this->investments = invModel->getInvestments();
+    int i = 0;
+    for(int index = 0; i < investments.size(); i++){
+        ui->invesmentsList->removeItem(index);
+    }
+
+    AddInvestmentWindow *addNewInv = new AddInvestmentWindow(0, invModel);
     addNewInv->exec();
 
-    InvestmentsModel *model = new InvestmentsModel();
-    this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
-    for(int index = 0;index < investments.size();index++)
-        ui->invesmentsList->removeItem(index);
+    this->investments = invModel->getInvestments();
+
     Investment *inv;
 
-    for(int index = 0; index < investments.size(); index++){
+    for(unsigned int index = 0; index < investments.size(); index++){
         inv = investments[index];
         ui->invesmentsList->addItem(QString::fromStdString(inv->getName()));
     }
@@ -91,7 +99,7 @@ void InvestmentsWindow::on_addButton_clicked()
 void InvestmentsWindow::on_modifyButton_clicked()
 {
     Investment *inv = investments[ui->invesmentsList->currentIndex()];
-    ModifyInvestmentWindow *modifyInv = new ModifyInvestmentWindow(0, inv);
+    ModifyInvestmentWindow *modifyInv = new ModifyInvestmentWindow(0, inv, invModel);
     modifyInv->exec();
     ui->usdAmount->setText(QString::number(inv->getUsd()));
     ui->eurAmount->setText(QString::number(inv->getEur()));

@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-#ifndef INVESTMENT_H
-#define INVESTMENT_H
-
-#include <string>
-
-class Investment
-{
-    std::string name;
-public:
-    Investment(std::string name);
-=======
 #ifndef INVESTMENTS_H
 #define INVESTMENTS_H
 #include<string>
@@ -65,7 +53,6 @@ public:
     double getDkk();
     double getNok();
     double getRub();
->>>>>>> 2e48aaf8a4847b0ccc8f8564b37e71d63e4c5514
 };
 
 #endif // INVESTMENT_H

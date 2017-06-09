@@ -68,3 +68,22 @@ std::vector <Investment*> ResponseHandler::processUserInvestments(std::string js
 double ResponseHandler::currencyStringToDouble(Document document, std::string currency){
     ;
 }
+
+UserModel * ResponseHandler::processUserData(std::string jsonResponse, std::string password)
+{
+    Document document;
+    document.Parse(jsonResponse.c_str());
+    std::string login = document["response"]["data"]["login"].GetString(),
+            name = document["response"]["data"]["name"].GetString(),
+            email = document["response"]["data"]["email"].GetString();
+
+    return new UserModel(login, email, name, password);
+}
+
+std::string ResponseHandler::processTokenId(std::string jsonResponse)
+{
+    Document document;
+    document.Parse(jsonResponse.c_str());
+
+    return document["response"]["data"]["tokenID"].GetString();
+}

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "model.h"
+#include "usermodel.h"
 #include "libs/rapidjson/include/rapidjson/document.h"
 #include "investment.h"
 
@@ -17,6 +18,8 @@ public:
     void handleRatesResponse(std::string rates, double convertedRates[10]);
     std::vector <Investment*> processUserInvestments(std::string jsonResponse);
     double currencyStringToDouble(Document document, std::string currency);
+	UserModel * processUserData(std::string jsonResponse, std::string password);
+    std::string processTokenId(std::string jsonResponse);
 
 };
 

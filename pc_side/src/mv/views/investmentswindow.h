@@ -18,7 +18,8 @@ class InvestmentsWindow : public QDialog
 private:
     Ui::InvestmentsWindow *ui;
     UserModel *user;
-    std::vector <Investment*> investments;
+    std::vector <Investment*> investments;    
+    InvestmentsModel *invModel;
 public:
     explicit InvestmentsWindow(QWidget *parent, UserModel *user);
     ~InvestmentsWindow();

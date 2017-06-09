@@ -51,7 +51,8 @@ public:
     QLabel *nokAmount;
     QLabel *rubAmount;
     QPushButton *modifyButton;
-    QLabel *currentAmount;
+    QLabel *valueInfoLabel;
+    QLabel *plnAmount;
 
     void setupUi(QDialog *InvestmentsWindow)
     {
@@ -139,9 +140,12 @@ public:
         modifyButton = new QPushButton(InvestmentsWindow);
         modifyButton->setObjectName(QStringLiteral("modifyButton"));
         modifyButton->setGeometry(QRect(290, 150, 141, 41));
-        currentAmount = new QLabel(InvestmentsWindow);
-        currentAmount->setObjectName(QStringLiteral("currentAmount"));
-        currentAmount->setGeometry(QRect(80, 230, 581, 21));
+        valueInfoLabel = new QLabel(InvestmentsWindow);
+        valueInfoLabel->setObjectName(QStringLiteral("valueInfoLabel"));
+        valueInfoLabel->setGeometry(QRect(80, 230, 281, 21));
+        plnAmount = new QLabel(InvestmentsWindow);
+        plnAmount->setObjectName(QStringLiteral("plnAmount"));
+        plnAmount->setGeometry(QRect(420, 230, 161, 21));
 
         retranslateUi(InvestmentsWindow);
 
@@ -178,7 +182,8 @@ public:
         nokAmount->setText(QApplication::translate("InvestmentsWindow", "Amount", Q_NULLPTR));
         rubAmount->setText(QApplication::translate("InvestmentsWindow", "Amount", Q_NULLPTR));
         modifyButton->setText(QApplication::translate("InvestmentsWindow", "Modify investment", Q_NULLPTR));
-        currentAmount->setText(QApplication::translate("InvestmentsWindow", "Global value of investments (current amount of PLN only): ", Q_NULLPTR));
+        valueInfoLabel->setText(QApplication::translate("InvestmentsWindow", "Global value of investments (current amount of PLN only): ", Q_NULLPTR));
+        plnAmount->setText(QApplication::translate("InvestmentsWindow", "Amount", Q_NULLPTR));
     } // retranslateUi
 
 };

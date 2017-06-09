@@ -13,9 +13,9 @@ class AddInvestmentWindow;
 class AddInvestmentWindow : public QDialog
 {
     Q_OBJECT
-    UserModel *user;
+    InvestmentsModel *invMod;
 public:
-    explicit AddInvestmentWindow(QWidget *parent, UserModel *user);
+    explicit AddInvestmentWindow(QWidget *parent, InvestmentsModel *invMod);
     ~AddInvestmentWindow();
 
 private slots:
