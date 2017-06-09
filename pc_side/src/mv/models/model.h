@@ -3,9 +3,9 @@
 
 
 class Model
-{
+{    
 public:
     Model();
 };
 
-#endif // WINDOWMODEL_H
+#endif // MODEL_H

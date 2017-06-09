@@ -6,83 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>284</width>
-    <height>303</height>
+    <width>758</width>
+    <height>401</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="loginButton">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>160</y>
-     <width>80</width>
-     <height>21</height>
+     <x>220</x>
+     <y>70</y>
+     <width>301</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="text">
-    <string>Log In</string>
+    <string>WORKSPACE, PLEASE DISPEARSE!!!!</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="registerButton">
+  <widget class="QPushButton" name="backButton">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>240</y>
-     <width>80</width>
-     <height>21</height>
+     <x>320</x>
+     <y>290</y>
+     <width>81</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>Register</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="loginLabel">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>60</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Login</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="passwordLabel">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>110</y>
-     <width>51</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Password</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="loginField">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>60</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="passwordField">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>110</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
+    <string>RUN</string>
    </property>
   </widget>
  </widget>

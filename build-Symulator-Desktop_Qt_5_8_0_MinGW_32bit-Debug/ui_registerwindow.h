@@ -59,6 +59,7 @@ public:
         passwordField = new QLineEdit(RegisterWindow);
         passwordField->setObjectName(QStringLiteral("passwordField"));
         passwordField->setGeometry(QRect(150, 60, 113, 21));
+        passwordField->setEchoMode(QLineEdit::Password);
         emailField = new QLineEdit(RegisterWindow);
         emailField->setObjectName(QStringLiteral("emailField"));
         emailField->setGeometry(QRect(150, 90, 113, 21));

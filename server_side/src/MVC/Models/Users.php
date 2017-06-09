@@ -31,7 +31,7 @@ class Users extends Model
      */
     public function getUserDetails(string $userLogin): array
     {
-        $sqlQuery = 'SELECT login, name, email FROM users WHERE login = :userLogin';
+        $sqlQuery = 'SELECT login, name, email FROM users2 WHERE login = :userLogin';
 
         $this->dbConnection->executeQuery($sqlQuery, ['userLogin' => $userLogin]);
 
@@ -54,15 +54,15 @@ class Users extends Model
      */
     public function createUser(string $login, string $password, string $email, array $defaultValues = [])
     {
-        $sqlQuery = "INSERT INTO users (login, password, email, name) VALUES (:login, :password, :email, :name)";
+        $sqlQuery = "INSERT INTO users2 (login, password, name, email) VALUES (:login, :password, :name, :email)";
         $valuesToBind = ['login' => $login, 'password' => $password, 'email' => $email, 'name' => $defaultValues['name'] ?? ''];
 
         if (strlen($login) > 40 || strlen($password) > 60 || strlen($email) > 120 || strlen($defaultValues['name'] ?? '') > 40)
             throw new DbQueryValueTooLong('length of values cannot exceed(letters): login(40), password(60), email(120), name(40)');
 
-        if (!$this->checkValueAvailability('email', 'users',  $email))
+        if (!$this->checkValueAvailability('email', 'users2',  $email))
             throw new DbQueryValueNotUnique('provided email is already in use');
-        elseif (!$this->checkValueAvailability('login', 'users', $login))
+        elseif (!$this->checkValueAvailability('login', 'users2', $login))
             throw new DbQueryValueNotUnique('provided login is already in use');
 
         if (!$this->dbConnection->executeQuery($sqlQuery, $valuesToBind))
@@ -79,7 +79,7 @@ class Users extends Model
      */
     public function modifyUser(string $login, string $email, string $name)
     {
-        $sqlQuery = "UPDATE users SET login = :login, email = :email, name = :name WHERE login = :login";
+        $sqlQuery = "UPDATE users2 SET login = :login, email = :email, name = :name WHERE login = :login";
 
         if (strlen($login) > 40 || strlen($email) > 120 || strlen($name > 40))
             throw new DbQueryValueTooLong('length of values cannot exceed(letters): login(40), email(120), name(40)');
@@ -98,7 +98,7 @@ class Users extends Model
      */
     public function deleteUser(string $login)
     {
-        if (!$this->deleteRecord('users', 'login', ['name' => 'login', 'value' => $login]))
+        if (!$this->deleteRecord('users2', 'login', ['name' => 'login', 'value' => $login]))
            throw new DbQueryExecutingFailure('problem while deleting record occurred in tokens table');
     }
 

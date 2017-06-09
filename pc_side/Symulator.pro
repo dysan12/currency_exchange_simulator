@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
 #OTHER COMPONENTS
+    src/connections/serverconnection.cpp \
     src/logger/logscreator.cpp \
     src/logger/logshandler.cpp \
     src/logger/errorslog.cpp \
@@ -52,15 +53,17 @@ SOURCES += \
     src/mv/views/stockwindow.cpp \
 #MODELS
     src/mv/models/model.cpp \
+    src/mv/models/modelConnection.cpp \
     src/mv/models/usermodel.cpp \
     src/mv/models/userhandlermodel.cpp \
     src/mv/models/investmentsmodel.cpp \
-    src/connections/serverconnection.cpp \
+    src/mv/models/investment.cpp \
     src/mv/models/responsehandler.cpp
 
 HEADERS += \
         config.h \
 #OTHER COMPONENTS
+    src/connections/serverconnection.h \
     src/logger/logscreator.h \
     src/logger/logshandler.h \
     src/logger/errorslog.h \
@@ -86,10 +89,11 @@ HEADERS += \
     src/mv/views/stockwindow.h \
 #MODELS
     src/mv/models/model.h \
+    src/mv/models/modelConnection.h \
     src/mv/models/userhandlermodel.h \
     src/mv/models/usermodel.h \
     src/mv/models/investmentsmodel.h \
-    src/connections/serverconnection.h \
+    src/mv/models/investment.h \
     src/mv/models/responsehandler.h
 
 INCLUDEPATH += src\exceptions \
@@ -97,6 +101,7 @@ INCLUDEPATH += src\exceptions \
             src\mv\models \
             src\mv\views \
             src\mv\controllers \
+            src\connections \
             libs\curl\include \
             libs\rapidjson\include
 
@@ -113,4 +118,4 @@ FORMS += \
     src/mv/views/stockwindow.ui
 
 LIBS += \
-        -L"C:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl
+        -L"E:/Qt/Projects/Master/currency_exchange_simulator/pc_side/libs/curl/bin" -lcurl

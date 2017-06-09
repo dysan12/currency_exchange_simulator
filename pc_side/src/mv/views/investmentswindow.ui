@@ -364,17 +364,30 @@
     <string>Modify investment</string>
    </property>
   </widget>
-  <widget class="QLabel" name="currentAmount">
+  <widget class="QLabel" name="valueInfoLabel">
    <property name="geometry">
     <rect>
      <x>80</x>
      <y>230</y>
-     <width>581</width>
+     <width>281</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>Global value of investments (current amount of PLN only): </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="plnAmount">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>230</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Amount</string>
    </property>
   </widget>
  </widget>

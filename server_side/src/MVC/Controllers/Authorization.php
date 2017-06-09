@@ -40,13 +40,13 @@ class Authorization extends Controller
             $urlRequest = $_SERVER['REQUEST_URI'];
 
             $userLogin = $model->authCredentials($hashResponse, $realm, $nonce, $methodRequest, $urlRequest);
-            [$tokenID, $lifeTime] = $model->generateToken($userLogin);
+            $tokenDetails = $model->generateToken($userLogin);
             $response
                 ->setStatusCode(200)
                 ->setResponse([
                 'data' => [
-                    'tokenID' => $tokenID,
-                    'lifeTime' => $lifeTime
+                    'tokenID' => $tokenDetails['tokenID'],
+                    'lifeTime' => $tokenDetails['lifeTime']
                 ]
             ]);
 

@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 require 'config.php';
 require 'src/Routing/Routes/initRoutes.php';
 
+
 $globalVarsCollection = new Currency\Collections\GlobalCollection();
 $logsCreator = new Currency\Logs\LogsCreator();
 
@@ -14,3 +15,4 @@ $route = $router->getMatchedRoute();
 $controllerPath = 'Currency\MVC\Controllers\\' . $route->getControllerName();
 $controller = new $controllerPath($globalVarsCollection, $logsCreator);
 $controller->{$route->getControllerMethod()}();
+

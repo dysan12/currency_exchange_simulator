@@ -54,6 +54,7 @@ public:
         passwordField = new QLineEdit(LoginWindow);
         passwordField->setObjectName(QStringLiteral("passwordField"));
         passwordField->setGeometry(QRect(120, 110, 113, 21));
+        passwordField->setEchoMode(QLineEdit::Password);
 
         retranslateUi(LoginWindow);
 

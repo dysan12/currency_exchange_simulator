@@ -10,3 +10,8 @@ ExplanationWindow::~ExplanationWindow()
 {
     delete ui;
 }
+
+void ExplanationWindow::on_backButton_clicked()
+{
+    this-close();
+}

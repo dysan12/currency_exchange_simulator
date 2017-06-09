@@ -6,139 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>729</width>
-    <height>472</height>
+    <width>501</width>
+    <height>216</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>140</y>
-     <width>51</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Amount</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_12">
-   <property name="geometry">
-    <rect>
-     <x>610</x>
-     <y>140</y>
-     <width>51</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Amount</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>170</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>220</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>270</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>320</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>370</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>170</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>270</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>220</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_9">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>370</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_10">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>320</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
@@ -165,7 +39,7 @@
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>330</x>
      <y>40</y>
      <width>141</width>
      <height>41</height>
@@ -178,9 +52,9 @@
   <widget class="QLabel" name="currentAmount">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>581</width>
+     <x>40</x>
+     <y>90</y>
+     <width>381</width>
      <height>21</height>
     </rect>
    </property>
@@ -191,144 +65,14 @@
   <widget class="QPushButton" name="backButton">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>410</y>
+     <x>200</x>
+     <y>140</y>
      <width>81</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Back</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="eurLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>220</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Euro</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="gbpLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>320</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pound</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="czkLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>370</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Czech koruna</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="jpyLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>270</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Yen</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="usdLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>170</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>USD</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="brlLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>220</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Brazilian real</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="rubLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>370</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Russian ruble</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="dkkLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>270</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Danish krone</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="nokLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>320</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Norwegian krone</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="audLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>170</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Australian dolar</string>
    </property>
   </widget>
  </widget>

@@ -14,10 +14,10 @@ CXX           = g++
 DEFINES       = -DUNICODE -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\pc_side -I. -I..\pc_side\src\exceptions -I..\pc_side\src\logger -I..\pc_side\src\mv\models -I..\pc_side\src\mv\views -Isrc\mv\controllers -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtWidgets -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtGui -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtANGLE -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtCore -Irelease -I. -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\win32-g++ 
+INCPATH       = -I..\pc_side -I. -I..\pc_side\src\exceptions -I..\pc_side\src\logger -I..\pc_side\src\mv\models -I..\pc_side\src\mv\views -Isrc\mv\controllers -I..\pc_side\src\connections -I..\pc_side\libs\curl\include -I..\pc_side\libs\rapidjson\include -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtWidgets -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtGui -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtANGLE -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\include\QtCore -Irelease -I. -I..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LC:\Programs\Qt5.8.0\5.8\mingw53_32\lib C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libqtmain.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Widgets.a C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Gui.a C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Core.a 
+LIBS        =        -lmingw32 -LC:\Programs\Qt5.8.0\5.8\mingw53_32\lib C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libqtmain.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 -LC:\xampp\htdocs\currency_exchange_simulator\pc_side\libs\curl\bin -lcurl C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Widgets.a C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Gui.a C:\Programs\Qt5.8.0\5.8\mingw53_32\lib\libQt5Core.a 
 QMAKE         = C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -44,11 +44,21 @@ OBJECTS_DIR   = release
 ####### Files
 
 SOURCES       = ..\pc_side\main.cpp \
+		..\pc_side\src\connections\serverconnection.cpp \
 		..\pc_side\src\logger\logscreator.cpp \
 		..\pc_side\src\logger\logshandler.cpp \
 		..\pc_side\src\logger\errorslog.cpp \
 		..\pc_side\src\logger\warningslog.cpp \
 		..\pc_side\src\exceptions\exception.cpp \
+		..\pc_side\src\exceptions\datatoolongexception.cpp \
+		..\pc_side\src\exceptions\invalidcredentialsexception.cpp \
+		..\pc_side\src\exceptions\arrayssizeincompatibleexception.cpp \
+		..\pc_side\src\exceptions\nothandledmethodexception.cpp \
+		..\pc_side\src\exceptions\serverconnectionbrokenexception.cpp \
+		..\pc_side\src\exceptions\badrequestexception.cpp \
+		..\pc_side\src\exceptions\accessdeniedexception.cpp \
+		..\pc_side\src\exceptions\internalservererrorexception.cpp \
+		..\pc_side\src\exceptions\valuesoccupiedexception.cpp \
 		..\pc_side\src\mv\views\menuwindow.cpp \
 		..\pc_side\src\mv\views\loginwindow.cpp \
 		..\pc_side\src\mv\views\registerwindow.cpp \
@@ -59,9 +69,13 @@ SOURCES       = ..\pc_side\main.cpp \
 		..\pc_side\src\mv\views\explanationwindow.cpp \
 		..\pc_side\src\mv\views\stockwindow.cpp \
 		..\pc_side\src\mv\models\model.cpp \
+		..\pc_side\src\mv\models\modelConnection.cpp \
 		..\pc_side\src\mv\models\usermodel.cpp \
 		..\pc_side\src\mv\models\userhandlermodel.cpp \
-		..\pc_side\src\mv\models\investmentsmodel.cpp release\moc_menuwindow.cpp \
+		..\pc_side\src\mv\models\investmentsmodel.cpp \
+		..\pc_side\src\mv\models\investment.cpp \
+		..\pc_side\src\mv\models\token.cpp \
+		..\pc_side\src\mv\models\responsehandler.cpp release\moc_menuwindow.cpp \
 		release\moc_loginwindow.cpp \
 		release\moc_addinvestmentwindow.cpp \
 		release\moc_modifyinvestmentwindow.cpp \
@@ -71,11 +85,21 @@ SOURCES       = ..\pc_side\main.cpp \
 		release\moc_explanationwindow.cpp \
 		release\moc_stockwindow.cpp
 OBJECTS       = release/main.o \
+		release/serverconnection.o \
 		release/logscreator.o \
 		release/logshandler.o \
 		release/errorslog.o \
 		release/warningslog.o \
 		release/exception.o \
+		release/datatoolongexception.o \
+		release/invalidcredentialsexception.o \
+		release/arrayssizeincompatibleexception.o \
+		release/nothandledmethodexception.o \
+		release/serverconnectionbrokenexception.o \
+		release/badrequestexception.o \
+		release/accessdeniedexception.o \
+		release/internalservererrorexception.o \
+		release/valuesoccupiedexception.o \
 		release/menuwindow.o \
 		release/loginwindow.o \
 		release/registerwindow.o \
@@ -86,9 +110,13 @@ OBJECTS       = release/main.o \
 		release/explanationwindow.o \
 		release/stockwindow.o \
 		release/model.o \
+		release/modelConnection.o \
 		release/usermodel.o \
 		release/userhandlermodel.o \
 		release/investmentsmodel.o \
+		release/investment.o \
+		release/token.o \
+		release/responsehandler.o \
 		release/moc_menuwindow.o \
 		release/moc_loginwindow.o \
 		release/moc_addinvestmentwindow.o \
@@ -100,6 +128,7 @@ OBJECTS       = release/main.o \
 		release/moc_stockwindow.o
 
 DIST          =  ..\pc_side\config.h \
+		..\pc_side\src\connections\serverconnection.h \
 		..\pc_side\src\logger\logscreator.h \
 		..\pc_side\src\logger\logshandler.h \
 		..\pc_side\src\logger\errorslog.h \
@@ -107,6 +136,13 @@ DIST          =  ..\pc_side\config.h \
 		..\pc_side\src\exceptions\exception.h \
 		..\pc_side\src\exceptions\datatoolongexception.h \
 		..\pc_side\src\exceptions\invalidcredentialsexception.h \
+		..\pc_side\src\exceptions\arrayssizeincompatibleexception.h \
+		..\pc_side\src\exceptions\nothandledmethodexception.h \
+		..\pc_side\src\exceptions\serverconnectionbrokenexception.h \
+		..\pc_side\src\exceptions\badrequestexception.h \
+		..\pc_side\src\exceptions\accessdeniedexception.h \
+		..\pc_side\src\exceptions\internalservererrorexception.h \
+		..\pc_side\src\exceptions\valuesoccupiedexception.h \
 		..\pc_side\src\mv\views\menuwindow.h \
 		..\pc_side\src\mv\views\loginwindow.h \
 		..\pc_side\src\mv\views\addinvestmentwindow.h \
@@ -117,14 +153,28 @@ DIST          =  ..\pc_side\config.h \
 		..\pc_side\src\mv\views\explanationwindow.h \
 		..\pc_side\src\mv\views\stockwindow.h \
 		..\pc_side\src\mv\models\model.h \
+		..\pc_side\src\mv\models\modelConnection.h \
 		..\pc_side\src\mv\models\userhandlermodel.h \
 		..\pc_side\src\mv\models\usermodel.h \
-		..\pc_side\src\mv\models\investmentsmodel.h ..\pc_side\main.cpp \
+		..\pc_side\src\mv\models\investmentsmodel.h \
+		..\pc_side\src\mv\models\investment.h \
+		..\pc_side\src\mv\models\token.h \
+		..\pc_side\src\mv\models\responsehandler.h ..\pc_side\main.cpp \
+		..\pc_side\src\connections\serverconnection.cpp \
 		..\pc_side\src\logger\logscreator.cpp \
 		..\pc_side\src\logger\logshandler.cpp \
 		..\pc_side\src\logger\errorslog.cpp \
 		..\pc_side\src\logger\warningslog.cpp \
 		..\pc_side\src\exceptions\exception.cpp \
+		..\pc_side\src\exceptions\datatoolongexception.cpp \
+		..\pc_side\src\exceptions\invalidcredentialsexception.cpp \
+		..\pc_side\src\exceptions\arrayssizeincompatibleexception.cpp \
+		..\pc_side\src\exceptions\nothandledmethodexception.cpp \
+		..\pc_side\src\exceptions\serverconnectionbrokenexception.cpp \
+		..\pc_side\src\exceptions\badrequestexception.cpp \
+		..\pc_side\src\exceptions\accessdeniedexception.cpp \
+		..\pc_side\src\exceptions\internalservererrorexception.cpp \
+		..\pc_side\src\exceptions\valuesoccupiedexception.cpp \
 		..\pc_side\src\mv\views\menuwindow.cpp \
 		..\pc_side\src\mv\views\loginwindow.cpp \
 		..\pc_side\src\mv\views\registerwindow.cpp \
@@ -135,9 +185,13 @@ DIST          =  ..\pc_side\config.h \
 		..\pc_side\src\mv\views\explanationwindow.cpp \
 		..\pc_side\src\mv\views\stockwindow.cpp \
 		..\pc_side\src\mv\models\model.cpp \
+		..\pc_side\src\mv\models\modelConnection.cpp \
 		..\pc_side\src\mv\models\usermodel.cpp \
 		..\pc_side\src\mv\models\userhandlermodel.cpp \
-		..\pc_side\src\mv\models\investmentsmodel.cpp
+		..\pc_side\src\mv\models\investmentsmodel.cpp \
+		..\pc_side\src\mv\models\investment.cpp \
+		..\pc_side\src\mv\models\token.cpp \
+		..\pc_side\src\mv\models\responsehandler.cpp
 QMAKE_TARGET  = Symulator
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = Symulator.exe
@@ -157,10 +211,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Symulator.zip $(SOURCES) $(DIST) ..\pc_side\Symulator.pro ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\spec_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\qdevice.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\device_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\common\angle.conf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\qconfig.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt_functions.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\win32-g++\qmake.conf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exclusive_builds.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\toolchain.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\default_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\default_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\resolve_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\default_post.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\build_pass.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qml_debug.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\rtti.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\precompile_header.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\warn_on.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\resources.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\moc.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\opengl.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\uic.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qmake_use.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\file_copies.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\windows.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\testcase_targets.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exceptions.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\yacc.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\lex.prf ..\pc_side\Symulator.pro ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\qtmain.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Widgets.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Gui.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Core.prl    ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\data\dummy.cpp ..\pc_side\config.h ..\pc_side\src\logger\logscreator.h ..\pc_side\src\logger\logshandler.h ..\pc_side\src\logger\errorslog.h ..\pc_side\src\logger\warningslog.h ..\pc_side\src\exceptions\exception.h ..\pc_side\src\exceptions\datatoolongexception.h ..\pc_side\src\exceptions\invalidcredentialsexception.h ..\pc_side\src\mv\views\menuwindow.h ..\pc_side\src\mv\views\loginwindow.h ..\pc_side\src\mv\views\addinvestmentwindow.h ..\pc_side\src\mv\views\modifyinvestmentwindow.h ..\pc_side\src\mv\views\usersettingswindow.h ..\pc_side\src\mv\views\registerwindow.h ..\pc_side\src\mv\views\investmentswindow.h ..\pc_side\src\mv\views\explanationwindow.h ..\pc_side\src\mv\views\stockwindow.h ..\pc_side\src\mv\models\model.h ..\pc_side\src\mv\models\userhandlermodel.h ..\pc_side\src\mv\models\usermodel.h ..\pc_side\src\mv\models\investmentsmodel.h ..\pc_side\main.cpp ..\pc_side\src\logger\logscreator.cpp ..\pc_side\src\logger\logshandler.cpp ..\pc_side\src\logger\errorslog.cpp ..\pc_side\src\logger\warningslog.cpp ..\pc_side\src\exceptions\exception.cpp ..\pc_side\src\mv\views\menuwindow.cpp ..\pc_side\src\mv\views\loginwindow.cpp ..\pc_side\src\mv\views\registerwindow.cpp ..\pc_side\src\mv\views\investmentswindow.cpp ..\pc_side\src\mv\views\addinvestmentwindow.cpp ..\pc_side\src\mv\views\modifyinvestmentwindow.cpp ..\pc_side\src\mv\views\usersettingswindow.cpp ..\pc_side\src\mv\views\explanationwindow.cpp ..\pc_side\src\mv\views\stockwindow.cpp ..\pc_side\src\mv\models\model.cpp ..\pc_side\src\mv\models\usermodel.cpp ..\pc_side\src\mv\models\userhandlermodel.cpp ..\pc_side\src\mv\models\investmentsmodel.cpp ..\pc_side\src\mv\views\menuwindow.ui ..\pc_side\src\mv\views\loginwindow.ui ..\pc_side\src\mv\views\registerwindow.ui ..\pc_side\src\mv\views\investmentswindow.ui ..\pc_side\src\mv\views\addinvestmentwindow.ui ..\pc_side\src\mv\views\modifyinvestmentwindow.ui ..\pc_side\src\mv\views\usersettingswindow.ui ..\pc_side\src\mv\views\explanationwindow.ui ..\pc_side\src\mv\views\stockwindow.ui    
+	$(ZIP) Symulator.zip $(SOURCES) $(DIST) ..\pc_side\Symulator.pro ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\spec_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\qdevice.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\device_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\common\angle.conf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\qconfig.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt_functions.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\win32-g++\qmake.conf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exclusive_builds.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\toolchain.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\default_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\default_pre.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\resolve_config.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\default_post.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\build_pass.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qml_debug.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\rtti.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\precompile_header.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\warn_on.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qt.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\resources.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\moc.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\opengl.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\uic.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\qmake_use.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\file_copies.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\win32\windows.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\testcase_targets.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\exceptions.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\yacc.prf ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\lex.prf ..\pc_side\Symulator.pro ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\qtmain.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Widgets.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Gui.prl ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\lib\Qt5Core.prl    ..\..\..\..\Programs\Qt5.8.0\5.8\mingw53_32\mkspecs\features\data\dummy.cpp ..\pc_side\config.h ..\pc_side\src\connections\serverconnection.h ..\pc_side\src\logger\logscreator.h ..\pc_side\src\logger\logshandler.h ..\pc_side\src\logger\errorslog.h ..\pc_side\src\logger\warningslog.h ..\pc_side\src\exceptions\exception.h ..\pc_side\src\exceptions\datatoolongexception.h ..\pc_side\src\exceptions\invalidcredentialsexception.h ..\pc_side\src\exceptions\arrayssizeincompatibleexception.h ..\pc_side\src\exceptions\nothandledmethodexception.h ..\pc_side\src\exceptions\serverconnectionbrokenexception.h ..\pc_side\src\exceptions\badrequestexception.h ..\pc_side\src\exceptions\accessdeniedexception.h ..\pc_side\src\exceptions\internalservererrorexception.h ..\pc_side\src\exceptions\valuesoccupiedexception.h ..\pc_side\src\mv\views\menuwindow.h ..\pc_side\src\mv\views\loginwindow.h ..\pc_side\src\mv\views\addinvestmentwindow.h ..\pc_side\src\mv\views\modifyinvestmentwindow.h ..\pc_side\src\mv\views\usersettingswindow.h ..\pc_side\src\mv\views\registerwindow.h ..\pc_side\src\mv\views\investmentswindow.h ..\pc_side\src\mv\views\explanationwindow.h ..\pc_side\src\mv\views\stockwindow.h ..\pc_side\src\mv\models\model.h ..\pc_side\src\mv\models\modelConnection.h ..\pc_side\src\mv\models\userhandlermodel.h ..\pc_side\src\mv\models\usermodel.h ..\pc_side\src\mv\models\investmentsmodel.h ..\pc_side\src\mv\models\investment.h ..\pc_side\src\mv\models\token.h ..\pc_side\src\mv\models\responsehandler.h ..\pc_side\main.cpp ..\pc_side\src\connections\serverconnection.cpp ..\pc_side\src\logger\logscreator.cpp ..\pc_side\src\logger\logshandler.cpp ..\pc_side\src\logger\errorslog.cpp ..\pc_side\src\logger\warningslog.cpp ..\pc_side\src\exceptions\exception.cpp ..\pc_side\src\exceptions\datatoolongexception.cpp ..\pc_side\src\exceptions\invalidcredentialsexception.cpp ..\pc_side\src\exceptions\arrayssizeincompatibleexception.cpp ..\pc_side\src\exceptions\nothandledmethodexception.cpp ..\pc_side\src\exceptions\serverconnectionbrokenexception.cpp ..\pc_side\src\exceptions\badrequestexception.cpp ..\pc_side\src\exceptions\accessdeniedexception.cpp ..\pc_side\src\exceptions\internalservererrorexception.cpp ..\pc_side\src\exceptions\valuesoccupiedexception.cpp ..\pc_side\src\mv\views\menuwindow.cpp ..\pc_side\src\mv\views\loginwindow.cpp ..\pc_side\src\mv\views\registerwindow.cpp ..\pc_side\src\mv\views\investmentswindow.cpp ..\pc_side\src\mv\views\addinvestmentwindow.cpp ..\pc_side\src\mv\views\modifyinvestmentwindow.cpp ..\pc_side\src\mv\views\usersettingswindow.cpp ..\pc_side\src\mv\views\explanationwindow.cpp ..\pc_side\src\mv\views\stockwindow.cpp ..\pc_side\src\mv\models\model.cpp ..\pc_side\src\mv\models\modelConnection.cpp ..\pc_side\src\mv\models\usermodel.cpp ..\pc_side\src\mv\models\userhandlermodel.cpp ..\pc_side\src\mv\models\investmentsmodel.cpp ..\pc_side\src\mv\models\investment.cpp ..\pc_side\src\mv\models\token.cpp ..\pc_side\src\mv\models\responsehandler.cpp ..\pc_side\src\mv\views\menuwindow.ui ..\pc_side\src\mv\views\loginwindow.ui ..\pc_side\src\mv\views\registerwindow.ui ..\pc_side\src\mv\views\investmentswindow.ui ..\pc_side\src\mv\views\addinvestmentwindow.ui ..\pc_side\src\mv\views\modifyinvestmentwindow.ui ..\pc_side\src\mv\views\usersettingswindow.ui ..\pc_side\src\mv\views\explanationwindow.ui ..\pc_side\src\mv\views\stockwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\logscreator.o release\logshandler.o release\errorslog.o release\warningslog.o release\exception.o release\menuwindow.o release\loginwindow.o release\registerwindow.o release\investmentswindow.o release\addinvestmentwindow.o release\modifyinvestmentwindow.o release\usersettingswindow.o release\explanationwindow.o release\stockwindow.o release\model.o release\usermodel.o release\userhandlermodel.o release\investmentsmodel.o release\moc_menuwindow.o release\moc_loginwindow.o release\moc_addinvestmentwindow.o release\moc_modifyinvestmentwindow.o release\moc_usersettingswindow.o release\moc_registerwindow.o release\moc_investmentswindow.o release\moc_explanationwindow.o release\moc_stockwindow.o
+	-$(DEL_FILE) release\main.o release\serverconnection.o release\logscreator.o release\logshandler.o release\errorslog.o release\warningslog.o release\exception.o release\datatoolongexception.o release\invalidcredentialsexception.o release\arrayssizeincompatibleexception.o release\nothandledmethodexception.o release\serverconnectionbrokenexception.o release\badrequestexception.o release\accessdeniedexception.o release\internalservererrorexception.o release\valuesoccupiedexception.o release\menuwindow.o release\loginwindow.o release\registerwindow.o release\investmentswindow.o release\addinvestmentwindow.o release\modifyinvestmentwindow.o release\usersettingswindow.o release\explanationwindow.o release\stockwindow.o release\model.o release\modelConnection.o release\usermodel.o release\userhandlermodel.o release\investmentsmodel.o release\investment.o release\token.o release\responsehandler.o release\moc_menuwindow.o release\moc_loginwindow.o release\moc_addinvestmentwindow.o release\moc_modifyinvestmentwindow.o release\moc_usersettingswindow.o release\moc_registerwindow.o release\moc_investmentswindow.o release\moc_explanationwindow.o release\moc_stockwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -295,20 +349,59 @@ release/moc_menuwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QtDebug \
 		../pc_side/src/mv/models/usermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
 		../pc_side/src/mv/models/model.h \
 		../pc_side/src/mv/views/stockwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../pc_side/src/mv/views/investmentswindow.h \
 		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		../pc_side/src/mv/views/explanationwindow.h \
 		../pc_side/src/mv/views/menuwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\menuwindow.h -o release\moc_menuwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\menuwindow.h -o release\moc_menuwindow.cpp
 
 release/moc_loginwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -417,17 +510,55 @@ release/moc_loginwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include
 		../pc_side/src/mv/views/registerwindow.h \
 		../pc_side/src/mv/models/userhandlermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
-		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
 		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
 		../pc_side/src/exceptions/datatoolongexception.h \
 		../pc_side/src/mv/views/menuwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMainWindow \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmainwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QtDebug \
-		../pc_side/src/mv/models/usermodel.h \
 		../pc_side/src/mv/views/stockwindow.h \
 		../pc_side/src/mv/views/investmentswindow.h \
 		../pc_side/src/mv/models/investmentsmodel.h \
@@ -436,7 +567,7 @@ release/moc_loginwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include
 		../pc_side/src/mv/views/loginwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\loginwindow.h -o release\moc_loginwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\loginwindow.h -o release\moc_loginwindow.cpp
 
 release/moc_addinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -543,7 +674,7 @@ release/moc_addinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32
 		../pc_side/src/mv/views/addinvestmentwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\addinvestmentwindow.h -o release\moc_addinvestmentwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\addinvestmentwindow.h -o release\moc_addinvestmentwindow.cpp
 
 release/moc_modifyinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -650,7 +781,7 @@ release/moc_modifyinvestmentwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53
 		../pc_side/src/mv/views/modifyinvestmentwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\modifyinvestmentwindow.h -o release\moc_modifyinvestmentwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\modifyinvestmentwindow.h -o release\moc_modifyinvestmentwindow.cpp
 
 release/moc_usersettingswindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -754,10 +885,16 @@ release/moc_usersettingswindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/model.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\usersettingswindow.h -o release\moc_usersettingswindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\usersettingswindow.h -o release\moc_usersettingswindow.cpp
 
 release/moc_registerwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -865,20 +1002,59 @@ release/moc_registerwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/incl
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../pc_side/src/mv/models/userhandlermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
-		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
 		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
 		../pc_side/src/exceptions/datatoolongexception.h \
 		../pc_side/src/mv/views/registerwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\registerwindow.h -o release\moc_registerwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\registerwindow.h -o release\moc_registerwindow.cpp
 
-release/moc_investmentswindow.cpp: ../pc_side/src/mv/models/investmentsmodel.h \
-		../pc_side/src/mv/models/model.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
+release/moc_investmentswindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -901,23 +1077,21 @@ release/moc_investmentswindow.cpp: ../pc_side/src/mv/models/investmentsmodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -979,10 +1153,54 @@ release/moc_investmentswindow.cpp: ../pc_side/src/mv/models/investmentsmodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
 		../pc_side/src/mv/views/investmentswindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\investmentswindow.h -o release\moc_investmentswindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\investmentswindow.h -o release\moc_investmentswindow.cpp
 
 release/moc_explanationwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -1089,7 +1307,7 @@ release/moc_explanationwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/i
 		../pc_side/src/mv/views/explanationwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\explanationwindow.h -o release\moc_explanationwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\explanationwindow.h -o release\moc_explanationwindow.cpp
 
 release/moc_stockwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
@@ -1196,7 +1414,7 @@ release/moc_stockwindow.cpp: ../../../../Programs/Qt5.8.0/5.8/mingw53_32/include
 		../pc_side/src/mv/views/stockwindow.h \
 		release/moc_predefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\stockwindow.h -o release\moc_stockwindow.cpp
+	C:\Programs\Qt5.8.0\5.8\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/xampp/htdocs/currency_exchange_simulator/pc_side -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/exceptions -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/logger -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/models -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/views -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/mv/controllers -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/src/connections -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/curl/include -IC:/xampp/htdocs/currency_exchange_simulator/pc_side/libs/rapidjson/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore -I. -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Programs/Qt5.8.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\pc_side\src\mv\views\stockwindow.h -o release\moc_stockwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1358,8 +1576,87 @@ release/main.o: ../pc_side/main.cpp ../../../../Programs/Qt5.8.0/5.8/mingw53_32/
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		../pc_side/config.h
+		../pc_side/config.h \
+		../pc_side/src/mv/views/loginwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
+		../pc_side/src/mv/views/registerwindow.h \
+		../pc_side/src/mv/models/userhandlermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/exceptions/datatoolongexception.h \
+		../pc_side/src/mv/views/menuwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMainWindow \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmainwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../pc_side/src/mv/views/stockwindow.h \
+		../pc_side/src/mv/views/investmentswindow.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/views/usersettingswindow.h \
+		../pc_side/src/mv/views/explanationwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\pc_side\main.cpp
+
+release/serverconnection.o: ../pc_side/src/connections/serverconnection.cpp ../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\serverconnection.o ..\pc_side\src\connections\serverconnection.cpp
 
 release/logscreator.o: ../pc_side/src/logger/logscreator.cpp ../pc_side/src/logger/logscreator.h \
 		../pc_side/src/logger/logshandler.h \
@@ -1599,6 +1896,42 @@ release/warningslog.o: ../pc_side/src/logger/warningslog.cpp ../pc_side/src/logg
 release/exception.o: ../pc_side/src/exceptions/exception.cpp ../pc_side/src/exceptions/exception.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\exception.o ..\pc_side\src\exceptions\exception.cpp
 
+release/datatoolongexception.o: ../pc_side/src/exceptions/datatoolongexception.cpp ../pc_side/src/exceptions/datatoolongexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\datatoolongexception.o ..\pc_side\src\exceptions\datatoolongexception.cpp
+
+release/invalidcredentialsexception.o: ../pc_side/src/exceptions/invalidcredentialsexception.cpp ../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\invalidcredentialsexception.o ..\pc_side\src\exceptions\invalidcredentialsexception.cpp
+
+release/arrayssizeincompatibleexception.o: ../pc_side/src/exceptions/arrayssizeincompatibleexception.cpp ../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\arrayssizeincompatibleexception.o ..\pc_side\src\exceptions\arrayssizeincompatibleexception.cpp
+
+release/nothandledmethodexception.o: ../pc_side/src/exceptions/nothandledmethodexception.cpp ../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\nothandledmethodexception.o ..\pc_side\src\exceptions\nothandledmethodexception.cpp
+
+release/serverconnectionbrokenexception.o: ../pc_side/src/exceptions/serverconnectionbrokenexception.cpp ../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\serverconnectionbrokenexception.o ..\pc_side\src\exceptions\serverconnectionbrokenexception.cpp
+
+release/badrequestexception.o: ../pc_side/src/exceptions/badrequestexception.cpp ../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\badrequestexception.o ..\pc_side\src\exceptions\badrequestexception.cpp
+
+release/accessdeniedexception.o: ../pc_side/src/exceptions/accessdeniedexception.cpp ../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\accessdeniedexception.o ..\pc_side\src\exceptions\accessdeniedexception.cpp
+
+release/internalservererrorexception.o: ../pc_side/src/exceptions/internalservererrorexception.cpp ../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\internalservererrorexception.o ..\pc_side\src\exceptions\internalservererrorexception.cpp
+
+release/valuesoccupiedexception.o: ../pc_side/src/exceptions/valuesoccupiedexception.cpp ../pc_side/src/exceptions/ValuesOccupiedException.h \
+		../pc_side/src/exceptions/exception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\valuesoccupiedexception.o ..\pc_side\src\exceptions\valuesoccupiedexception.cpp
+
 release/menuwindow.o: ../pc_side/src/mv/views/menuwindow.cpp ../pc_side/src/mv/views/menuwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMainWindow \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmainwindow.h \
@@ -1707,17 +2040,99 @@ release/menuwindow.o: ../pc_side/src/mv/views/menuwindow.cpp ../pc_side/src/mv/v
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QtDebug \
 		../pc_side/src/mv/models/usermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
 		../pc_side/src/mv/models/model.h \
 		../pc_side/src/mv/views/stockwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
 		../pc_side/src/mv/views/investmentswindow.h \
 		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		../pc_side/src/mv/views/explanationwindow.h \
-		ui_menuwindow.h
+		ui_menuwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMenuBar \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmenubar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmenu.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QStatusBar \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstatusbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QToolBar \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\menuwindow.o ..\pc_side\src\mv\views\menuwindow.cpp
 
 release/loginwindow.o: ../pc_side/src/mv/views/loginwindow.cpp ../pc_side/src/mv/views/loginwindow.h \
@@ -1828,23 +2243,102 @@ release/loginwindow.o: ../pc_side/src/mv/views/loginwindow.cpp ../pc_side/src/mv
 		../pc_side/src/mv/views/registerwindow.h \
 		../pc_side/src/mv/models/userhandlermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
-		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
 		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
 		../pc_side/src/exceptions/datatoolongexception.h \
 		../pc_side/src/mv/views/menuwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMainWindow \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmainwindow.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QtDebug \
-		../pc_side/src/mv/models/usermodel.h \
 		../pc_side/src/mv/views/stockwindow.h \
 		../pc_side/src/mv/views/investmentswindow.h \
 		../pc_side/src/mv/models/investmentsmodel.h \
 		../pc_side/src/mv/views/usersettingswindow.h \
 		../pc_side/src/mv/views/explanationwindow.h \
-		ui_loginwindow.h
+		ui_loginwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\loginwindow.o ..\pc_side\src\mv\views\loginwindow.cpp
 
 release/registerwindow.o: ../pc_side/src/mv/views/registerwindow.cpp ../pc_side/src/mv/views/registerwindow.h \
@@ -1954,19 +2448,102 @@ release/registerwindow.o: ../pc_side/src/mv/views/registerwindow.cpp ../pc_side/
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../pc_side/src/mv/models/userhandlermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
-		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
 		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
 		../pc_side/src/exceptions/datatoolongexception.h \
-		ui_registerwindow.h
+		ui_registerwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../pc_side/src/exceptions/ValuesOccupiedException.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\registerwindow.o ..\pc_side\src\mv\views\registerwindow.cpp
 
 release/investmentswindow.o: ../pc_side/src/mv/views/investmentswindow.cpp ../pc_side/src/mv/views/investmentswindow.h \
-		../pc_side/src/mv/models/investmentsmodel.h \
-		../pc_side/src/mv/models/model.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
@@ -1989,23 +2566,21 @@ release/investmentswindow.o: ../pc_side/src/mv/views/investmentswindow.cpp ../pc
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDialog \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtguiglobal.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtgui-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobject.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlist.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiterator.h \
@@ -2067,7 +2642,90 @@ release/investmentswindow.o: ../pc_side/src/mv/views/investmentswindow.cpp ../pc
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
 		ui_investmentswindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QComboBox \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qcombobox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../pc_side/src/mv/views/addinvestmentwindow.h \
 		../pc_side/src/mv/views/modifyinvestmentwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\investmentswindow.o ..\pc_side\src\mv\views\investmentswindow.cpp
@@ -2175,7 +2833,50 @@ release/addinvestmentwindow.o: ../pc_side/src/mv/views/addinvestmentwindow.cpp .
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_addinvestmentwindow.h
+		ui_addinvestmentwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\addinvestmentwindow.o ..\pc_side\src\mv\views\addinvestmentwindow.cpp
 
 release/modifyinvestmentwindow.o: ../pc_side/src/mv/views/modifyinvestmentwindow.cpp ../pc_side/src/mv/views/modifyinvestmentwindow.h \
@@ -2281,7 +2982,50 @@ release/modifyinvestmentwindow.o: ../pc_side/src/mv/views/modifyinvestmentwindow
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_modifyinvestmentwindow.h
+		ui_modifyinvestmentwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modifyinvestmentwindow.o ..\pc_side\src\mv\views\modifyinvestmentwindow.cpp
 
 release/usersettingswindow.o: ../pc_side/src/mv/views/usersettingswindow.cpp ../pc_side/src/mv/views/usersettingswindow.h \
@@ -2387,7 +3131,56 @@ release/usersettingswindow.o: ../pc_side/src/mv/views/usersettingswindow.cpp ../
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_usersettingswindow.h
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/model.h \
+		ui_usersettingswindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\usersettingswindow.o ..\pc_side\src\mv\views\usersettingswindow.cpp
 
 release/explanationwindow.o: ../pc_side/src/mv/views/explanationwindow.cpp ../pc_side/src/mv/views/explanationwindow.h \
@@ -2493,7 +3286,50 @@ release/explanationwindow.o: ../pc_side/src/mv/views/explanationwindow.cpp ../pc
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_explanationwindow.h
+		ui_explanationwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\explanationwindow.o ..\pc_side\src\mv\views\explanationwindow.cpp
 
 release/stockwindow.o: ../pc_side/src/mv/views/stockwindow.cpp ../pc_side/src/mv/views/stockwindow.h \
@@ -2599,11 +3435,74 @@ release/stockwindow.o: ../pc_side/src/mv/views/stockwindow.cpp ../pc_side/src/mv
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_stockwindow.h
+		ui_stockwindow.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qicon.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QLineEdit \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qlineedit.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\stockwindow.o ..\pc_side\src\mv\views\stockwindow.cpp
 
 release/model.o: ../pc_side/src/mv/models/model.cpp ../pc_side/src/mv/models/model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\model.o ..\pc_side\src\mv\models\model.cpp
+
+release/modelConnection.o: ../pc_side/src/mv/models/modelConnection.cpp ../pc_side/src/mv/models/modelConnection.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modelConnection.o ..\pc_side\src\mv\models\modelConnection.cpp
 
 release/usermodel.o: ../pc_side/src/mv/models/usermodel.cpp ../pc_side/src/mv/models/usermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
@@ -2636,6 +3535,7 @@ release/usermodel.o: ../pc_side/src/mv/models/usermodel.cpp ../pc_side/src/mv/mo
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
 		../pc_side/src/mv/models/model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\usermodel.o ..\pc_side\src\mv\models\usermodel.cpp
 
@@ -2670,14 +3570,78 @@ release/userhandlermodel.o: ../pc_side/src/mv/models/userhandlermodel.cpp ../pc_
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
-		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
 		../pc_side/src/exceptions/exception.h \
-		../pc_side/src/exceptions/datatoolongexception.h
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h \
+		../pc_side/src/exceptions/invalidcredentialsexception.h \
+		../pc_side/src/exceptions/datatoolongexception.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QCryptographicHash \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcryptographichash.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		../pc_side/src/exceptions/ValuesOccupiedException.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\userhandlermodel.o ..\pc_side\src\mv\models\userhandlermodel.cpp
 
 release/investmentsmodel.o: ../pc_side/src/mv/models/investmentsmodel.cpp ../pc_side/src/mv/models/investmentsmodel.h \
+		../pc_side/src/mv/models/modelConnection.h \
 		../pc_side/src/mv/models/model.h \
+		../pc_side/src/connections/serverconnection.h \
+		../pc_side/libs/curl/include/curl/curl.h \
+		../pc_side/libs/curl/include/curl/curlver.h \
+		../pc_side/libs/curl/include/curl/curlbuild.h \
+		../pc_side/libs/curl/include/curl/curlrules.h \
+		../pc_side/libs/curl/include/curl/easy.h \
+		../pc_side/libs/curl/include/curl/multi.h \
+		../pc_side/libs/curl/include/curl/typecheck-gcc.h \
+		../pc_side/config.h \
+		../pc_side/src/exceptions/arrayssizeincompatibleexception.h \
+		../pc_side/src/exceptions/exception.h \
+		../pc_side/src/exceptions/nothandledmethodexception.h \
+		../pc_side/src/exceptions/serverconnectionbrokenexception.h \
+		../pc_side/src/exceptions/badrequestexception.h \
+		../pc_side/src/exceptions/accessdeniedexception.h \
+		../pc_side/src/exceptions/internalservererrorexception.h \
+		../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/usermodel.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
@@ -2707,8 +3671,93 @@ release/investmentsmodel.o: ../pc_side/src/mv/models/investmentsmodel.cpp ../pc_
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
-		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\investmentsmodel.o ..\pc_side\src\mv\models\investmentsmodel.cpp
+
+release/investment.o: ../pc_side/src/mv/models/investment.cpp ../pc_side/src/mv/models/investment.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\investment.o ..\pc_side\src\mv\models\investment.cpp
+
+release/token.o: ../pc_side/src/mv/models/token.cpp ../pc_side/src/mv/models/token.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\token.o ..\pc_side\src\mv\models\token.cpp
+
+release/responsehandler.o: ../pc_side/src/mv/models/responsehandler.cpp ../pc_side/src/mv/models/responsehandler.h \
+		../pc_side/src/mv/models/model.h \
+		../pc_side/src/mv/models/usermodel.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstring.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qchar.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobal.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qconfig.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtcore-config.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qsystemdetection.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qprocessordetection.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcompilerdetection.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtypeinfo.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qsysinfo.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlogging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qflags.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtypetraits.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qatomic.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbasicatomic.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qgenericatomic.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qatomic_msvc.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmutex.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Programs/Qt5.8.0/5.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../pc_side/src/mv/models/token.h \
+		../pc_side/libs/rapidjson/include/rapidjson/document.h \
+		../pc_side/libs/rapidjson/include/rapidjson/reader.h \
+		../pc_side/libs/rapidjson/include/rapidjson/allocators.h \
+		../pc_side/libs/rapidjson/include/rapidjson/rapidjson.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../pc_side/libs/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../pc_side/libs/rapidjson/include/rapidjson/stream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodings.h \
+		../pc_side/libs/rapidjson/include/rapidjson/encodedstream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/memorystream.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/meta.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/stack.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/swap.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strtod.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/ieee754.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/biginteger.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/diyfp.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/pow10.h \
+		../pc_side/libs/rapidjson/include/rapidjson/error/error.h \
+		../pc_side/libs/rapidjson/include/rapidjson/internal/strfunc.h \
+		../pc_side/src/mv/models/investment.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\responsehandler.o ..\pc_side\src\mv\models\responsehandler.cpp
 
 release/moc_menuwindow.o: release/moc_menuwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_menuwindow.o release\moc_menuwindow.cpp

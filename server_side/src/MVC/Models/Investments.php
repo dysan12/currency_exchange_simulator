@@ -114,14 +114,14 @@ class Investments extends Model
      * @return bool - result of executing
      * @throws DbQueryExecutingFailure - throws if problem with executing query occurred
      */
-    public function modifyInvestment(string $investOwner, string $investName,  array $currencies)
+    public function modifyInvestment(string $investOwner, string $investName, array $currencies)
     {
         $currenciesEquals = [];
         foreach ($currencies as $currency => $value) {
             $currenciesEquals[] = $currency . '= :' . $currency;
         }
 
-        $sqlQuery = "UPDATE investments SET " . implode(' AND ', $currenciesEquals) . " WHERE user_login = :owner AND name = :name";
+        $sqlQuery = "UPDATE investments SET " . implode(' ,', $currenciesEquals) . " WHERE user_login = :owner AND name = :name";
 
         $result = $this->dbConnection->executeQuery($sqlQuery, array_merge($currencies, ['owner' => $investOwner, 'name' => $investName]));
 

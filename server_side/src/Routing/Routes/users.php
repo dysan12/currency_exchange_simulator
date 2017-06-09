@@ -3,7 +3,7 @@
 
 
 $routesCollection->addItem(new Currency\Routing\Route('userDetails', '/users/([\w%-]{1,40})', [
-    'type' => 'resource',
+    'type' => 'collection',
     'requestMethod' => 'GET',
     'controllerSet' => ['Users', 'getUserDetails']
 ]));

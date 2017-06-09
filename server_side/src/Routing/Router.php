@@ -59,7 +59,7 @@ class Router
      */
     private function matchRoute(): void
     {
-        $urlRequest = $this->urlRequest;
+        $urlRequest = explode('?', $this->urlRequest)[0];
         $methodRequest = $this->methodRequest;
 
         try {

@@ -3,6 +3,7 @@
 
 #include<QString>
 
+#include "token.h"
 #include "model.h"
 
 
@@ -13,12 +14,16 @@ private:
                 email,
                 name,
                 password;
+    Token * token;
+
 public:
     UserModel(std::string login = "", std::string email = "", std::string name = "", std::string password = "");
     void setLogin(std::string login);
     void setEmail(std::string email);
     void setName(std::string name);
     void setPassword(std::string password);
+    void setToken(Token *token);
+    Token * getToken();
     std::string getLogin();
     std::string getEmail();
     std::string getName();

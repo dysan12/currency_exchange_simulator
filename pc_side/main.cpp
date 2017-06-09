@@ -1,12 +1,12 @@
 #include <QApplication>
 
-
 #include "config.h"
 #include "loginwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
 
     LoginWindow *login = new LoginWindow();
     login->show();

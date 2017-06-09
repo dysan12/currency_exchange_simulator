@@ -1,5 +1,8 @@
 #ifndef ADDINVESTMENTWINDOW_H
 #define ADDINVESTMENTWINDOW_H
+#include "investment.h"
+#include "investmentsmodel.h"
+#include  "usermodel.h"
 
 #include <QDialog>
 
@@ -10,9 +13,9 @@ class AddInvestmentWindow;
 class AddInvestmentWindow : public QDialog
 {
     Q_OBJECT
-
+    UserModel *user;
 public:
-    explicit AddInvestmentWindow(QWidget *parent = 0);
+    explicit AddInvestmentWindow(QWidget *parent, UserModel *user);
     ~AddInvestmentWindow();
 
 private slots:

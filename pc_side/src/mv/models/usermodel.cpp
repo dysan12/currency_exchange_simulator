@@ -5,6 +5,16 @@ UserModel::UserModel(std::string login, std::string email, std::string name, std
 {
 }
 
+void UserModel::setToken(Token *token)
+{
+    this->token = token;
+}
+
+Token * UserModel::getToken()
+{
+    return this->token;
+}
+
 void UserModel::setLogin(std::string login)
 {
     this->login = login;

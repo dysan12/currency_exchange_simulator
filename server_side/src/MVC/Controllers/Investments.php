@@ -55,7 +55,7 @@ class Investments extends AuthorizedController
                 }
             }
 
-            if (count($currenciesKeys) !== $investCurrencies)
+            if (count($currenciesKeys) !== count($investCurrencies))
                 throw new DbQueryTooFewValues('all currencies ought to be passed in request');
 
             $this->mainModel->modifyInvestment($investOwner, $investName, $investCurrencies);

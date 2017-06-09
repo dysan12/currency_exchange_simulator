@@ -1,6 +1,8 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
 
+#include "ValuesOccupiedException.h"
+
 RegisterWindow::RegisterWindow(QWidget *parent) : QDialog(parent), ui(new Ui::RegisterWindow)
 {
     this->userHandler = new UserHandlerModel();
@@ -24,15 +26,17 @@ void RegisterWindow::on_registerButton_clicked()
 
     try {
         this->userHandler->registerUser(
-                     ui->loginField->text(),
-                     ui->passwordField->text(),
-                     ui->emailField->text(),
-                     ui->nameField->text()
+                     ui->loginField->text().toStdString(),
+                     ui->passwordField->text().toStdString(),
+                     ui->emailField->text().toStdString(),
+                     ui->nameField->text().toStdString()
                      );
         QMessageBox::information(this, "Registering successful", "You can now use your new account");
         this->close();
-    } catch (DataTooLongException exception) {
+    } catch (DataTooLongException * exception) {
         QMessageBox::information(this, "Too long data", "Provided register credentials ought to be of size :....!");
+    } catch(ValuesOccupiedException * exception) {
+        QMessageBox::information(this, "Login/email taken", "Provided username or email had been taken.");
     }
 }
 

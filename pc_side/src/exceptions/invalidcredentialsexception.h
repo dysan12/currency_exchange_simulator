@@ -5,6 +5,7 @@
 
 class InvalidCredentialsException : Exception
 {
-
+public:
+    InvalidCredentialsException();
 };
 #endif // INVALIDCREDENTAILSEXCEPTION_H

@@ -35,14 +35,16 @@ class Authorization extends Model
     {
         $hashingAlgorithm = 'sha256';
 
-        $sqlQuery = "SELECT login, password FROM users2";
+        $sqlQuery = "SELECT login, password FROM users";
 
         $this->dbConnection->executeQuery($sqlQuery);
         $credentials = $this->dbConnection->getResult();
+
         foreach ($credentials as $userCredentials) {
             $a1 = hash($hashingAlgorithm, sprintf('%s:%s:%s', $userCredentials['login'], $realm, $userCredentials['password']));
             $a2 = hash($hashingAlgorithm, sprintf('%s:%s', $methodRequest, $urlRequest));
             $resultHash = hash($hashingAlgorithm, sprintf('%s:%s:%s', $a1, $nonce, $a2));
+
             if ($resultHash === $response) {
                 return $userCredentials['login'];
             }

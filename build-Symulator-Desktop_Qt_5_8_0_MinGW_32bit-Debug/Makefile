@@ -196,6 +196,7 @@ Makefile: ../pc_side/Symulator.pro ../../../../Programs/Qt5.8.0/5.8/mingw53_32/m
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/qt_config.prf \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/toolchain.prf \
 		../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/default_pre.prf \
@@ -362,6 +363,7 @@ Makefile: ../pc_side/Symulator.pro ../../../../Programs/Qt5.8.0/5.8/mingw53_32/m
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/qt_config.prf:
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/toolchain.prf:
 ../../../../Programs/Qt5.8.0/5.8/mingw53_32/mkspecs/features/default_pre.prf:
