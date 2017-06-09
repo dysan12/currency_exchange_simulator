@@ -5,18 +5,20 @@ ModifyInvestmentWindow::ModifyInvestmentWindow(QWidget *parent, Investment *inv)
     QDialog(parent),
     ui(new Ui::ModifyInvestmentWindow)
 {
+    this->inv=inv;
     ui->setupUi(this);
-    ui->usdAmount->setText(inv->getUsd());
-    ui->eurAmount->setText(inv->getEur());
-    ui->jpyAmount->setText(inv->getJpy());
-    ui->gbpAmount->setText(inv->getGbp());
-    ui->czkAmount->setText(inv->getCzk());
-    ui->audAmount->setText(inv->getAud());
-    ui->brlAmount->setText(inv->getBrl());
-    ui->dkkAmount->setText(inv->getDkk());
-    ui->nokAmount->setText(inv->getNok());
-    ui->rubAmount->setText(inv->getRub());
-    ui->plnAmount->setText(inv->getPln());
+    ui->nameField->setText(QString::fromStdString(inv->getName()));
+    ui->usdField->setText(QString::number(inv->getUsd()));
+    ui->eurField->setText(QString::number(inv->getEur()));
+    ui->jpyField->setText(QString::number(inv->getJpy()));
+    ui->gbpField->setText(QString::number(inv->getGbp()));
+    ui->czkField->setText(QString::number(inv->getCzk()));
+    ui->audField->setText(QString::number(inv->getAud()));
+    ui->brlField->setText(QString::number(inv->getBrl()));
+    ui->dkkField->setText(QString::number(inv->getDkk()));
+    ui->nokField->setText(QString::number(inv->getNok()));
+    ui->rubField->setText(QString::number(inv->getRub()));
+    ui->currentAmount->setText(QString::number(inv->getPln()));
 
     InvestmentsModel *model = new InvestmentsModel();
     model->getRates();
@@ -45,5 +47,17 @@ void ModifyInvestmentWindow::on_backButton_clicked()
 
 void ModifyInvestmentWindow::on_modifyButton_clicked()
 {
-
+    InvestmentsModel *model = new InvestmentsModel();
+    inv->setUsd(std::stod(ui->usdField->text().toStdString()));
+    inv->setEur(std::stod(ui->eurField->text().toStdString()));
+    inv->setJpy(std::stod(ui->jpyField->text().toStdString()));
+    inv->setGbp(std::stod(ui->gbpField->text().toStdString()));
+    inv->setCzk(std::stod(ui->czkField->text().toStdString()));
+    inv->setAud(std::stod(ui->audField->text().toStdString()));
+    inv->setBrl(std::stod(ui->brlField->text().toStdString()));
+    inv->setDkk(std::stod(ui->dkkField->text().toStdString()));
+    inv->setNok(std::stod(ui->nokField->text().toStdString()));
+    inv->setRub(std::stod(ui->rubField->text().toStdString()));
+    model->modifyInvestment(this->inv);
+    this->close();
 }

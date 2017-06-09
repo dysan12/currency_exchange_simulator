@@ -10,29 +10,29 @@ void ResponseHandler::handleRatesResponse(std::string rates, double convertedRat
     Document document;
     document.Parse(json);
 
-    double pln = this->currencyStringToDouble(document, "pln");
+    double pln = atof(document["response"]["data"]["pln"].GetString());
     convertedRates[0]=1/pln;
     /*double currency = atof(document["response"]["data"]["usd"].GetString());
      * NIE, bo USD=1 wedlug rates ktore otrzymujemy
      * USD konwertujemy dzielac przez kurs pln, a reszte walut liczymy nizej
      */
-    double currency = athis->currencyStringToDouble(document, "eur");
+    double currency = atof(document["response"]["data"]["eur"].GetString());
     convertedRates[1]=pln/currency;
-    currency = this->currencyStringToDouble(document, "jpy");
+    currency = atof(document["response"]["data"]["jpy"].GetString());
     convertedRates[2]=pln/currency;
-    currency = this->currencyStringToDouble(document, "gbp");
+    currency = atof(document["response"]["data"]["gbp"].GetString());
     convertedRates[3]=pln/currency;
-    currency = this->currencyStringToDouble(document, "czk");
+    currency = atof(document["response"]["data"]["czk"].GetString());
     convertedRates[4]=pln/currency;
-    currency = this->currencyStringToDouble(document, "aud");
+    currency = atof(document["response"]["data"]["aud"].GetString());
     convertedRates[5]=pln/currency;
-    currency = this->currencyStringToDouble(document, "brl");
+    currency = atof(document["response"]["data"]["brl"].GetString());
     convertedRates[6]=pln/currency;
-    currency = this->currencyStringToDouble(document, "dkk");
+    currency = atof(document["response"]["data"]["dkk"].GetString());
     convertedRates[7]=pln/currency;
-    currency = this->currencyStringToDouble(document, "nok");
+    currency = atof(document["response"]["data"]["nok"].GetString());
     convertedRates[8]=pln/currency;
-    currency = this->currencyStringToDouble(document, "rub");
+    currency = atof(document["response"]["data"]["rub"].GetString());
     convertedRates[9]=pln/currency;
 }
 
@@ -47,17 +47,17 @@ std::vector <Investment*> ResponseHandler::processUserInvestments(std::string js
         std::string user_login = document["response"]["data"][i]["user_login"].GetString();
         std::string found_date = document["response"]["data"][i]["found_date"].GetString();
         std::string name = document["response"]["data"][i]["name"].GetString();
-        double pln = this->currencyStringToDouble(document, "pln");
-        double usd = this->currencyStringToDouble(document, "usd");
-        double eur = this->currencyStringToDouble(document, "eur");
-        double jpy = this->currencyStringToDouble(document, "jpy");
-        double gbp = this->currencyStringToDouble(document, "gbp");
-        double czk = this->currencyStringToDouble(document, "czk");
-        double aud = this->currencyStringToDouble(document, "aud");
-        double brl = this->currencyStringToDouble(document, "brl");
-        double dkk = this->currencyStringToDouble(document, "dkk");
-        double nok = this->currencyStringToDouble(document, "nok");
-        double rub = this->currencyStringToDouble(document, "rub");
+        double pln = atof(document["response"]["data"][i]["pln"].GetString());
+        double usd = atof(document["response"]["data"][i]["usd"].GetString());
+        double eur = atof(document["response"]["data"][i]["eur"].GetString());
+        double jpy = atof(document["response"]["data"][i]["jpy"].GetString());
+        double gbp = atof(document["response"]["data"][i]["gbp"].GetString());
+        double czk = atof(document["response"]["data"][i]["czk"].GetString());
+        double aud = atof(document["response"]["data"][i]["aud"].GetString());
+        double brl = atof(document["response"]["data"][i]["brl"].GetString());
+        double dkk = atof(document["response"]["data"][i]["dkk"].GetString());
+        double nok = atof(document["response"]["data"][i]["nok"].GetString());
+        double rub = atof(document["response"]["data"][i]["rub"].GetString());
         investments.push_back(new Investment(user_login,found_date,name,pln,usd,
                                              eur,jpy,gbp,czk,aud,brl,dkk,nok,rub));
     }
@@ -66,5 +66,5 @@ std::vector <Investment*> ResponseHandler::processUserInvestments(std::string js
 }
 
 double ResponseHandler::currencyStringToDouble(Document document, std::string currency){
-    return atof(document["response"]["data"][i][currency.c_str()].GetString());
+    ;
 }

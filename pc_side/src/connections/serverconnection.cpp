@@ -1,4 +1,5 @@
 #include "serverconnection.h"
+#include <cstring>
 
 ServerConnection::ServerConnection()
 {
@@ -59,6 +60,7 @@ std::string ServerConnection::callRequest(std::string url,
         else
             throw new NotHandledMethodException();
 
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseString);
 
         response = curl_easy_perform(curl);
@@ -85,7 +87,6 @@ void ServerConnection::callGetPart(CURL *curl, std::string url, std::string comp
 {
     url = url + (composedData.length() ? ("?" + composedData) : "");
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
 }
 
 /**
@@ -96,8 +97,13 @@ void ServerConnection::callGetPart(CURL *curl, std::string url, std::string comp
  */
 void ServerConnection::callPostPart(CURL *curl, std::string url, std::string composedData)
 {
+    char *params = new char[composedData.length() + 1];
+    std::strcpy(params, composedData.c_str());
+    //params[composedData.size()] = '\0';
+
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, composedData);
+    curl_easy_setopt(curl, CURLOPT_POST, 1);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params);
 }
 
 /**
@@ -108,9 +114,12 @@ void ServerConnection::callPostPart(CURL *curl, std::string url, std::string com
  */
 void ServerConnection::callDeletePart(CURL *curl, std::string url, std::string composedData)
 {
+    char *params = new char[composedData.length() + 1];
+    std::strcpy(params, composedData.c_str());
+
     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, composedData);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params);
 }
 
 /**
@@ -121,9 +130,12 @@ void ServerConnection::callDeletePart(CURL *curl, std::string url, std::string c
  */
 void ServerConnection::callPutPart(CURL *curl, std::string url, std::string composedData)
 {
+    char *params = new char[composedData.length() + 1];
+    std::strcpy(params, composedData.c_str());
+
     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, composedData);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params);
 }
 
 /**

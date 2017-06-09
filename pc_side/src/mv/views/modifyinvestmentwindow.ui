@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>50</x>
      <y>20</y>
      <width>101</width>
      <height>21</height>
@@ -24,16 +24,6 @@
    </property>
    <property name="text">
     <string>Investment Name</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="nameField">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>231</width>
-     <height>21</height>
-    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="modifyButton">
@@ -329,6 +319,19 @@
    </property>
    <property name="text">
     <string>Pound</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nameField">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inv Name</string>
    </property>
   </widget>
  </widget>

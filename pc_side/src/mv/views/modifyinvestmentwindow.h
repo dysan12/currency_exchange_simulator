@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::ModifyInvestmentWindow *ui;
+    Investment *inv;
 };
 
 #endif // MODIFYINVESTMENTWINDOW_H

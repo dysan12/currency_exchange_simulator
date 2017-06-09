@@ -5,6 +5,7 @@
 #include "serverconnection.h"
 #include "responsehandler.h"
 #include "investment.h"
+#include "usermodel.h"
 #include <QString>
 
 
@@ -22,9 +23,10 @@ public:
 
     int investmentsAmount();
     int deleteInvestment();
-    bool addInvestment();
+    void addInvestment(UserModel *user, std::string name);
     void getRates();
     double getConvertedRate(int index);
+    void modifyInvestment(Investment *inv);
 
     friend class ResponseHandler;
 };

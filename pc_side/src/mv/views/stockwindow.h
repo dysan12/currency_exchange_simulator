@@ -16,6 +16,8 @@ public:
 
 private slots:
 
+    void on_backButton_clicked();
+
 private:
     Ui::StockWindow *ui;
 };

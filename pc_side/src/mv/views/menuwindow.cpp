@@ -19,7 +19,7 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::on_stockStatusButton_clicked()
 {
-    StockWindow *stockView = new StockWindow();
+    ExplanationWindow *stockView = new ExplanationWindow();
     this->hide();
     stockView->exec();
     this->show();
@@ -27,7 +27,7 @@ void MenuWindow::on_stockStatusButton_clicked()
 
 void MenuWindow::on_investmentsButton_clicked()
 {
-    InvestmentsWindow *investmentsView = new InvestmentsWindow(0, );
+    InvestmentsWindow *investmentsView = new InvestmentsWindow(0, this->user);
     this->hide();
     investmentsView->exec();
     this->show();
@@ -43,7 +43,7 @@ void MenuWindow::on_settingsButton_clicked()
 
 void MenuWindow::on_explanationButton_clicked()
 {
-    ExplanationWindow *explanationView = new ExplanationWindow();
+    StockWindow *explanationView = new StockWindow();
     this->hide();
     explanationView->exec();
     this->show();
