@@ -14,13 +14,17 @@ int InvestmentsModel::investmentsAmount(){
    return 4;
 }
 
-int InvestmentsModel::deleteInvestment(){
-    return 1;//USUWANIE W DB
+void InvestmentsModel::deleteInvestment(UserModel *user, std::string name){
+    std::string resource = ("investments/" + user->getLogin() + "&" + name);
+    std::vector <std::string> keys = {"tokenID"},
+            values = {"123"};
+
+    servcon->callRequest(resource, "DELETE", keys, values);
 }
 
 void InvestmentsModel::addInvestment(UserModel *user, std::string name){
     std::vector <std::string> keys = {"user", "tokenID", "name"},
-            values={user->getName(), "123", name};
+            values={user->getLogin(), "123", name};
 
     servcon->callRequest("investments", "POST", keys, values);
 }

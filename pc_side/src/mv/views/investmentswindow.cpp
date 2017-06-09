@@ -58,8 +58,17 @@ void InvestmentsWindow::on_backButton_clicked()
 void InvestmentsWindow::on_deleteButton_clicked()
 {
     InvestmentsModel *model=new InvestmentsModel();
-    int i=model->deleteInvestment();
-    ui->invesmentsList->removeItem(i);
+    model->deleteInvestment(user, ui->invesmentsList->currentText().toStdString());
+
+    this->investments = model->getInvestments("dysan12" /*user->getLogin()*/);
+    for(int index = 0;index < investments.size();index++)
+        ui->invesmentsList->removeItem(index);
+
+    Investment *inv;
+    for(int index = 0; index < investments.size(); index++){
+        inv = investments[index];
+        ui->invesmentsList->addItem(QString::fromStdString(inv->getName()));
+    }
 }
 
 void InvestmentsWindow::on_addButton_clicked()

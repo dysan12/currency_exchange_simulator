@@ -22,7 +22,7 @@ public:
     std::vector <Investment*> getInvestments(std::string userLogin);
 
     int investmentsAmount();
-    int deleteInvestment();
+    void deleteInvestment(UserModel *user, std::string name);
     void addInvestment(UserModel *user, std::string name);
     void getRates();
     double getConvertedRate(int index);
